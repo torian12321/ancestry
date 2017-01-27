@@ -28,8 +28,31 @@ body{
 	.font();
 }
 
+
+#header{
+	height    : 100px;
+	background: @blue;
+	color     : @fontColor_white;
+	h1{
+
+	}
+}
 #footer{
 	min-height: 60px;
 	padding   : 20px;
-	background: @grey;
+	background: @white_2;
+	li{
+		display    : block;
+		line-height: 3em;
+		a{
+			display: block;
+		}
+	}
+}
+.panel{
+	background: @white;
+	.rounded();
+	&.sec{
+		background: @white_2;
+	}
 }
