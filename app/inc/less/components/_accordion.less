@@ -1,0 +1,110 @@
+ /*
+## Acordion
+
+If coming from a different page, refresh the page to make the accordion effect works
+```
+<div class="accordions">
+	<div class="accordion">
+		<div class="acc-header" data-activate="parent">
+			Accordion 1
+		</div>
+		<div class="acc-body">
+			<div class="acc-body-content fixie"></div>
+		</div>
+	</div>
+	<div class="accordion active">
+		<div class="acc-header" data-activate="parent">
+			Accordion 2
+		</div>
+		<div class="acc-body">
+			<div class="acc-body-content fixie"></div>
+		</div>
+	</div>
+	<div class="accordion">
+		<div class="acc-header" data-activate="parent">
+			Accordion 3
+		</div>
+		<div class="acc-body">
+			<div class="acc-body-content fixie"></div>
+		</div>
+	</div>
+	<div class="accordion">
+		<div class="acc-header" data-activate="parent">
+			Accordion 4
+		</div>
+		<div class="acc-body">
+			<div class="acc-body-content fixie"></div>
+		</div>
+	</div>
+</div>
+```
+*/
+
+
+
+
+.accordion{
+	@color_main: @themeColor_2;
+	@color_sec : @themeColor_1;
+
+
+	margin    : 10px 0;
+	width     : 100%;
+	overflow  : hidden;
+	background: @color_main;
+	.rounded();
+	.transition(background);
+	.smart-text-color(@color_main);
+	.acc-header{
+		@icon_size: 20px;
+		@gutter_x : 10px;
+		@gutter_y : 10px;
+
+		position     : relative;
+		width        : 100%;
+		padding      : @gutter_y @gutter_x @gutter_y (@gutter_x + @icon_size);
+		cursor       : pointer;
+		background   : darken(@color_main, 10%);
+		border-bottom: darken(@color_main, 10%) 2px solid;
+		.transition(background border-color);
+		.smart-text-color(darken(@color_main, 10%));
+		&:before{
+			position  : absolute;
+			content   : '\f107';
+			top       : @gutter_y;
+			left      : @gutter_x / 2;
+			width     : @icon_size;
+			height    : @icon_size;
+			font-size : @icon_size;
+			text-align: center;
+			.transition(transform color);
+			.font_icons();
+		}
+	}
+	.acc-body{
+		position  : relative;
+		max-height: 0;
+		.transition(max-height);
+		& > .acc-body-content{
+			padding: 20px 10px;
+		}
+	}
+
+	&:hover{
+		.shadow();
+	}
+	&.active{
+		background: lighten(@color_sec, 5%);
+		.smart-text-color(lighten(@color_sec, 5%));
+		.acc-header{
+			background  : @color_sec;
+			border-color: darken(@color_sec, 5%);
+			&:before{
+				.rotate(-90deg);
+			}
+		}
+		.acc-body{
+			max-height: 500px;
+		}
+	}
+}

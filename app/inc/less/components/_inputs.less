@@ -1,0 +1,87 @@
+/*
+## Inputs
+```
+	<input type="text" placeholder="Name">
+	<input type="password" placeholder="Password">
+	<input type="text" class="success" placeholder="Right value">
+	<input type="text" class="error" placeholder="Wrong value">
+	<input type="text" disabled placeholder="Disabled">
+```
+
+## Text area
+```
+	<textarea placeholder="Text Area"></textarea>
+```
+*/
+
+@color_main  : @themeColor_1;
+@color_sec   : @white;
+
+
+input{
+	height   : @inputHeight;
+}
+textarea{
+	resize: none;
+	height: 200px;
+}
+
+
+input,
+textarea{
+	min-width : 200px;
+	padding   : 5px;
+	color     : @fontColor_grey;
+	border    : @border;
+	background: fadeout(@color_sec, 80%);
+
+	.rounded(@BRadious);
+	.transition(@property: border; @time: .2s);
+	&:hover,
+	&:focus{
+		color     : @color_main;
+		background: fadeout(@color_sec, 50%);
+	}
+	&:focus{
+		border-color: @color_main;
+	}
+
+	&.error{
+		color       : fadeout(@colorState_danger, 50%);
+		border-color: fadeout(@colorState_danger, 50%);
+	}
+	&.success{
+		color       : @colorState_success;
+		border-color: @colorState_success;
+	}
+	&:disabled{
+		background  : @colorState_disable;
+		color       : darken(@colorState_disable, 20%);
+		border-color: darken(@colorState_disable, 20%);
+	}
+	&:-webkit-autofill,
+	&:-webkit-autofill:focus{
+    	-webkit-box-shadow: 0 0 0px 1000px @color_sec inset;
+	}
+}
+
+
+::-webkit-input-placeholder { .placeholder(); }
+::-moz-placeholder 			{ .placeholder(); }
+:-ms-input-placeholder 		{ .placeholder(); }
+.placeholder(){
+	color      : fadeout(@fontColor_grey, 40%);
+	text-shadow: 0 0 .125em transparent;
+	input:focus&{
+		opacity: .5;
+	}
+	input.error&{
+		color: @colorState_danger;
+	}
+	input.success&{
+		color: @colorState_success;
+	}
+	input:disabled&{
+		color: darken(@colorState_disable, 20%);
+	}
+}

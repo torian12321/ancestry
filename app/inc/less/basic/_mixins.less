@@ -1,0 +1,386 @@
+//-------------------
+//-- Generic mixins -
+//-------------------
+.transition(
+	@property: all;
+	@time    : .5s;
+	@timing  : ease-out;
+	@delay   : false;
+	@merge   : true;
+	){
+	& when not (@delay = false){
+		-webkit-transition-delay: @delay; /* Safari */
+		transition-delay        : @delay;
+	}
+
+	// Transitions
+	& when (@merge = true){
+		// By default, concatenate transitions
+		-webkit-transition +: @property @timing @time; /* For Safari 3.1 to 6.0 */
+		transition         +: @property @timing @time;
+	}
+	& when (@merge = false){
+		-webkit-transition: @property @timing @time; /* For Safari 3.1 to 6.0 */
+		transition        : @property @timing @time;
+	}
+}
+
+.border(
+	@width: @BWidth;
+	@color: @BColor;
+	@style: @BStyle;
+	){
+	border: @arguments;
+}
+
+.rounded(
+	@topLeft    : @BRadious;
+	@topRight   : @BRadious;
+	@bottomRight: @BRadious;
+	@bottomLeft : @BRadious;
+	){
+	border-radius        : @arguments;
+	-moz-border-radius   : @arguments;
+	-webkit-border-radius: @arguments;
+}
+.rounded(@radius: @BRadious;){
+	// topLeft topRight bottomRight bottomLeft
+	border-radius        : @radius;
+	-moz-border-radius   : @radius;
+	-webkit-border-radius: @radius;
+}
+
+.opacity(@opacity: .8;) {
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
+}
+
+.transform(
+	@transformation;
+	@merge: true;
+	){
+	& when (@merge = true){
+		-moz-transform    +_: @transformation;
+		-ms-transform     +_: @transformation; /* IE 9 */
+		-webkit-transform +_: @transformation; /* Chrome, Safari, Opera */
+		-o-transform      +_: @transformation;
+		transform         +_: @transformation;
+	}
+	& when (@merge = false){
+		-moz-transform   : @transformation;
+		-ms-transform    : @transformation; /* IE 9 */
+		-webkit-transform: @transformation; /* Chrome, Safari, Opera */
+		-o-transform     : @transformation;
+		transform        : @transformation;
+	}
+}
+.transform-origin(@origin: center center){
+	-webkit-transform-origin: @origin;
+	-moz-transform-origin   : @origin;
+	-ms-transform-origin    : @origin;
+	-o-transform-origin     : @origin;
+	transform-origin        : @origin;
+}
+.rotate(
+	@angle : 90deg;
+	@x-axis: 50%;
+	@y-axis: 50%;
+	){
+	-ms-transform    : rotate(@angle);       /* IE 9 */
+	-webkit-transform: rotate(@angle);       /* Chrome, Safari, Opera */
+	transform        : rotate(@angle);
+
+	.axis_origin(@x-axis, @y-axis);
+}
+.axis_origin(
+	@x-axis: 0,
+	@y-axis: 0
+	){
+	-ms-transform-origin    : @arguments; 	/* IE 9 */
+	-webkit-transform-origin: @arguments; 	/* Chrome, Safari, Opera */
+	transform-origin        : @arguments;
+}
+
+.gradient(
+	@iniColor: @themeColor_1;
+	@endColor: lighten(@iniColor, 10%);
+	@angle   : 90deg;
+	){
+	background: @iniColor;												/* Old browsers */
+	background: -webkit-linear-gradient(@angle, @iniColor, @endColor); 	/* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(@angle, @iniColor, @endColor);      	/* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(@angle, @iniColor, @endColor);    	/* For Firefox 3.6 to 15 */
+    background: linear-gradient(@angle, @iniColor, @endColor);         	/* Standard syntax (must be last) */
+}
+
+.shadow(
+	@shadow: @shadow;
+	@merge : false;
+	){
+	// Transitions
+	& when (@merge = true){
+		-webkit-box-shadow +: @shadow;
+		-moz-box-shadow    +: @shadow;
+		box-shadow         +: @shadow;
+	}
+	& when (@merge = false){
+		-webkit-box-shadow: @shadow;
+		-moz-box-shadow   : @shadow;
+		box-shadow        : @shadow;
+	}
+}
+
+.oneLineText(){
+	text-overflow: ellipsis;
+	overflow     : hidden;
+	white-space  : nowrap;
+
+    &.pinned {
+        white-space  : initial !important;
+    }
+}
+.filter(
+	@filter;
+	@merge : true;
+	){
+	& when (@merge = true){
+		-webkit-filter +_: @filter;
+	    -moz-filter    +_: @filter;
+	    -o-filter      +_: @filter;
+	    -ms-filter     +_: @filter;
+	    filter         +_: @filter;
+	}
+	& when (@merge = false){
+		-webkit-filter: @filter;
+	    -moz-filter   : @filter;
+	    -o-filter     : @filter;
+	    -ms-filter    : @filter;
+	    filter        : @filter;
+	}
+}
+.blur(
+	@blur :5px;
+	@merge: true;
+	){
+	.filter(blur(@blur); @merge;);
+}
+.BW(
+	@grayScale: 50%;
+	@merge    : true;
+	){
+	.filter(grayscale(@grayScale); @merge;);
+}
+
+.background-img(
+	@BG-url  : '@{defImgDir}/img.png';
+	@position: center center;
+	@size    : cover;
+	@repeat  : no-repeat;
+	){
+	background             : url(@BG-url) @repeat @position;
+
+	background-size        : @size;
+	-moz-background-size   : @size;
+	-webkit-background-size: @size;
+}
+.background-parallax(
+    @BG-url   : '@{defImgDir}/img.png';
+    @position : center center;
+    ){
+	background             : url(@BG-url) @position no-repeat fixed;
+
+	background-size        : cover;
+	-moz-background-size   : cover;
+	-webkit-background-size: cover;
+}
+
+.animation (
+	@animation;
+	@time      : 1s;
+	@iterations: infinite;
+	@speedCurve: linear;
+	@delay     : false;
+	@direction : false;
+	@state     : false;
+	@merge     : true;
+	) {
+	& when not (@delay = false){
+		.animation_delay(@delay);
+	}
+	& when not (@direction = false){
+		.animation_direction(@direction);
+	}
+	& when not (@state = false){
+		.animation_state(@state);
+	}
+
+	& when (@merge = true){
+		animation         +: @animation @time @speedCurve @iterations;
+		-moz-animation    +: @animation @time @speedCurve @iterations;
+		-webkit-animation +: @animation @time @speedCurve @iterations;
+		-ms-animation     +: @animation @time @speedCurve @iterations;
+		-o-animation      +: @animation @time @speedCurve @iterations;
+	}
+	& when (@merge = false){
+		animation        : @animation @time @speedCurve @iterations;
+		-moz-animation   : @animation @time @speedCurve @iterations;
+		-webkit-animation: @animation @time @speedCurve @iterations;
+		-ms-animation    : @animation @time @speedCurve @iterations;
+		-o-animation     : @animation @time @speedCurve @iterations;
+	}
+}
+.animation_delay(@delay: 0s;){
+	-webkit-animation-delay: @delay;
+    animation-delay        : @delay;
+}
+.animation_direction(@dir: normal){
+	// normal | reverse | alternate | alternate-reverse | initial | inherit
+	-webkit-animation-direction: @dir;
+    animation-direction        : @dir;
+}
+.animation_state(@state: normal){
+	// paused | running | initial | inherit
+	-webkit-animation-play-state: @state;
+    animation-play-state        : @state;
+}
+.animation_keyframes(@name; @keyframes;){
+	@-webkit-keyframes @name {@keyframes();}
+	@-moz-keyframes    @name {@keyframes();}
+	@-ms-keyframes     @name {@keyframes();}
+	@-o-keyframes      @name {@keyframes();}
+	@keyframes         @name {@keyframes();}
+}
+
+.userSelect(@select: text){
+    // text | none | all
+    -webkit-user-select: @select;  /* Chrome all / Safari all */
+    -moz-user-select   : @select;  /* Firefox all */
+    -ms-user-select    : @select;  /* IE 10+ */
+    user-select        : @select;  /* Likely future */
+}
+
+
+// Triangles used for the pendants on the sections
+.triangle_left(
+	@tirangleH: 2vw;
+	@tirangleW: 100vw;
+	@color    : @white;
+	){
+	content     : "";
+	position    : absolute;
+	z-index     : 1;
+	bottom      : -@tirangleH;
+	width       : 0;
+	left        : 100vw - @tirangleW;
+	height      : 0;
+	padding-top : 1px;
+	border-style: solid;
+	border-width: 0 @tirangleW @tirangleH 0;
+
+	border-top-color   : transparent;
+	border-bottom-color: transparent;
+	border-left-color  : transparent;
+}
+.triangle_right(
+	@tirangleH: 2vw;
+	@tirangleW: 100vw;
+	@color    : @white;
+	){
+	content     : "";
+	position    : absolute;
+	z-index     : 1;
+	bottom      : -@tirangleH;
+	width       : 0;
+	right 		: 100vw - @tirangleW;
+	height      : 0;
+	padding-top : 1px;
+	border-style: solid;
+	border-width: @tirangleH @tirangleW 0 0;
+
+	border-right-color : transparent;
+	border-bottom-color: transparent;
+	border-left-color  : transparent;
+}
+
+
+.triangle_left_top(
+	@tirangleH: 2vw;
+	@tirangleW: 100vw;
+	@color    : @white;
+	){
+	content     : "";
+	color       : transparent;
+	position    : absolute;
+	z-index     : 1;
+	top         : -@tirangleH;
+	width       : 0;
+	left 		: 100vw - @tirangleW;
+	height      : 0;
+	padding-top : 1px;
+	border-style: solid;
+	border-width: 0px @tirangleW @tirangleH 0px;
+
+	border-top-color   : transparent;
+	border-bottom-color: @color;
+	border-left-color  : transparent;
+}
+.triangle_right_top(
+	@tirangleH: 2vw;
+	@tirangleW: 100vw;
+	@color    : @white;
+	){
+	content     : "";
+	color       : transparent;
+	position    : absolute;
+	z-index     : 1;
+	top         : -@tirangleH;
+	width       : 0;
+	right 		: 100vw - @tirangleW;
+	height      : 0;
+	padding-top : 1px;
+	border-style: solid;
+	border-width: @tirangleH @tirangleW 0 0;
+
+	border-right-color : @color;
+	border-bottom-color: transparent;
+	border-left-color  : transparent;
+}
+
+.smart-text-color(){}
+.smart-text-color(
+	@BG        : @themeColor_BG;
+	@colorLight: @fontColor_white;
+	@colorDark : @fontColor_black;
+	) when (lightness(@BG) >= 50%) {
+    // Its a light color return a dark output
+    color: @colorDark;
+}
+.smart-text-color(
+	@BG        : @themeColor_BG;
+	@colorLight: @fontColor_white;
+	@colorDark : @fontColor_black;
+	) when (lightness(@BG) < 50%) {
+    // Its a dark color return a dark output
+    color: @colorLight;
+}
+
+
+// Mixin to generate random number;
+// int should be 0 or 1, 1 being to make it an integer
+// e.g:
+// 		.makeRandom(5, 10);
+// 		padding   : @randNum * 1px;
+.makeRandom(
+    @min: 0;
+    @max: @min+1;
+    @int: 0;
+    ) {
+    .checkInt() {
+        @getNum: `Math.random() * (@{max} - @{min} + @{int})`;
+        @base: unit(`@{int} == 1 ? Math.floor(@{getNum}) : @{getNum}`);
+    }
+    .checkInt();
+    @randNum: @base + @min;
+}

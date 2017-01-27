@@ -1,0 +1,55 @@
+// Spin
+@-moz-keyframes    spin { 100% { -moz-transform   : rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes 		   spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+
+// Blink
+@-moz-keyframes    blink { 0% { .opacity(0); } 100% { .opacity(1); } }
+@-webkit-keyframes blink { 0% { .opacity(0); } 100% { .opacity(1); } }
+@keyframes         blink { 0% { .opacity(0); } 100% { .opacity(1); } }
+
+
+// Pulse
+.pulse(@color: #5fba7d;){
+	@-moz-keyframes pulse {
+        0% 	 { -moz-box-shadow : 0 0 0 0    fadeout(@color, 40%);  }
+		70%  { -moz-box-shadow : 0 0 0 26px fadeout(@color, 100%); }
+		100% { -moz-box-shadow : 0 0 0 0    fadeout(@color, 100%); }
+	}
+	@-webkit-keyframes pulse {
+        0% 	 { -webkit-box-shadow : 0 0 0 0    fadeout(@color, 40%);  }
+		70%  { -webkit-box-shadow : 0 0 0 26px fadeout(@color, 100%); }
+		100% { -webkit-box-shadow : 0 0 0 0    fadeout(@color, 100%); }
+	}
+	@keyframes pulse {
+		0%   { box-shadow : 0 0 0 0    fadeout(@color, 40%);  }
+		70%  { box-shadow : 0 0 0 26px fadeout(@color, 100%); }
+        100% { box-shadow : 0 0 0 0    fadeout(@color, 100%); }
+	}
+}
+
+// Bouncing Shadow
+.bouncing_shadow(
+    @bouncingPosition: 0 -2em;
+    @color           : fadeout(@black, 20%)
+){
+    @-moz-keyframes bouncing_shadow {
+        0%,
+        80%,
+        100% { -moz-box-shadow: 0 0 @color;   }
+        40%  { -moz-box-shadow: @bouncingPosition @color;}
+    }
+    @-webkit-keyframes bouncing_shadow {
+        0%,
+        80%,
+        100% { -webkit-box-shadow: 0 0 @color;   }
+        40%  { -webkit-box-shadow: @bouncingPosition @color;}
+    }
+    @keyframes bouncing_shadow {
+        0%,
+        80%,
+        100% { box-shadow: 0 0 @color;    }
+        40%  { box-shadow: @bouncingPosition @color; }
+    }
+}

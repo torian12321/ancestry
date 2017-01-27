@@ -1,0 +1,176 @@
+ /*
+## Headings
+```
+	<h1>Heading 1</h1>
+	<h2>Heading 2</h2>
+	<h3>Heading 3</h3>
+	<h4>Heading 4</h4>
+	<h5>Heading 5</h5>
+	<h6>Heading 6</h6>
+```
+
+## Headings - Secundary
+```
+	<h1 class="sec">Heading 1</h1>
+	<h2 class="sec">Heading 2</h2>
+	<h3 class="sec">Heading 3</h3>
+	<h4 class="sec">Heading 4</h4>
+	<h5 class="sec">Heading 5</h5>
+	<h6 class="sec">Heading 6</h6>
+```
+
+## Lists - ul
+```
+<ul>
+	<li>List Item 1</li>
+	<li>List Item 2</li>
+	<li>List Item 3</li>
+	<li>List Item 4</li>
+	<li>List Item 5</li>
+</ul>
+```
+
+## Lists - ol
+```
+<ol>
+	<li>List Item 1</li>
+	<li>List Item 2</li>
+	<li>List Item 3</li>
+	<li>List Item 4</li>
+	<li>List Item 5</li>
+</ol>
+```
+
+## Aligns
+Different align examples
+```
+	<p class="fixie txt-l"><p>
+	<p class="fixie txt-c"><p>
+	<p class="fixie txt-r"><p>
+	<p class="fixie txt-j"><p>
+```
+
+## Font Styles
+Font styles
+```
+	<p class="fixie txt-light"><p>
+	<p class="fixie txt-regular"><p>
+	<p class="fixie txt-bold"><p>
+	<p class="fixie txt-black"><p>
+	<p class="fixie txt-italic"><p>
+```
+
+## Colors
+Main and secondary colors
+```
+	<p class="fixie txt-main"><p>
+	<p class="fixie txt-sec"><p>
+```
+
+## Case styles
+```
+	<p class="fixie txt-upp">Upercase<p>
+	<p class="fixie txt-low">Lowercase<p>
+	<p class="fixie txt-cap">Capitalize<p>
+```
+*/
+
+body {
+	font-size  : @baseFontSize;
+	line-height: 1.25;
+	color      : @fontColor_black;
+	.font();
+	.font-regular();
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+	color: @themeColor_1;
+	&.sec{
+		color: @themeColor_2;
+	}
+}
+h1{
+	font-size     : 2em;
+	text-transform: uppercase;
+	.font-bold();
+}
+h2{
+	font-size: 1.8em;
+}
+h3{
+	font-size: 1.5em;
+}
+
+p{
+	text-align: justify;
+	.hightline{
+		background: darken(@white, 20%);
+	}
+}
+strong{
+	color: @themeColor_2;
+	.font-bold();
+}
+blockquote{
+
+}
+ol li{
+	@ballSize: 6px;
+
+	position   : relative;
+	margin-left: @ballSize + 10;
+	&:before{
+		content   : '';
+		position  : absolute;
+		left      : -1 * (@ballSize + 10);
+		top       : 6px;
+		height    : @ballSize;
+		width     : @ballSize;
+		background: @themeColor_2;
+		.rounded(50%);
+	}
+}
+
+.smart-color{
+	.smart-text-color(@themeColor_BG);
+}
+
+// Color
+.txt-main{ color: @themeColor_1;}
+.txt-sec { color: @themeColor_2;}
+
+// Alignment
+.txt-j { text-align: justify;}
+.txt-c { text-align: center; }
+.txt-r { text-align: right; }
+.txt-l { text-align: left; }
+.txt-nowrap { white-space: nowrap; }
+
+// Font Style
+.txt-light  {.font-light();}
+.txt-regular{.font-regular();}
+.txt-bold   {.font-bold();}
+.txt-black  {.font-black();}
+.txt-italic {.font-italic();}
+
+// Transformation
+.txt-low { text-transform: lowercase; }
+.txt-upp { text-transform: uppercase; }
+.txt-cap { text-transform: capitalize; }
+
+// Test selected
+*::selection{
+	.textSelected();
+}
+::-moz-selection{
+	.textSelected();
+}
+.textSelected(){
+	background : fadeout(@themeColor_1, 40%);
+	color      : @fontColor_white;
+	text-shadow: none;
+}

@@ -1,0 +1,36 @@
+/*
+# Panel
+```
+<div class="panel fixie"></div>
+```
+# Panel - important
+```
+<div class="panel fixie"></div>
+<div class="panel important fixie"></div>
+<div class="panel fixie"></div>
+```
+# Panel - Colors
+```
+<div class="panel info fixie"></div>
+<div class="panel success fixie"></div>
+<div class="panel warning fixie"></div>
+<div class="panel danger fixie"></div>
+```
+*/
+.panel{
+	display          : block;
+	margin           : 20px 0;
+	padding          : 20px 10px;
+	background       : @white;
+	border           : solid 1px darken(@white, 10%);
+	border-left-width: 10px;
+	border-left-color: @themeColor_1;
+	.rounded();
+	&.important{
+		.shadow(@shadow);
+	}
+	&.info   {border-left-color: @colorState_info;}
+	&.success{border-left-color: @colorState_success;}
+	&.warning{border-left-color: @colorState_warning;}
+	&.danger {border-left-color: @colorState_danger;}
+}

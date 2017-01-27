@@ -1,0 +1,100 @@
+/*
+## Rating
+```
+<ul class="rating">
+	<li class="o"></li>
+	<li class="o"></li>
+	<li class="o"></li>
+	<li class="o"></li>
+	<li></li>
+</ul>
+```
+
+## Rating - Circle
+```
+<ul class="rating circle">
+	<li class="o"></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+```
+
+## Rating - Languages
+```
+<ul class="rating lang">
+	<li class="o"></li>
+	<li class="o"></li>
+	<li class="o"></li>
+	<li></li>
+	<li></li>
+</ul>
+```
+
+## Rating - Heart
+```
+<ul class="rating heart">
+	<li class="o"></li>
+	<li class="o"></li>
+	<li class="o"></li>
+	<li></li>
+	<li></li>
+</ul>
+```
+
+## Rating - Square
+```
+<ul class="rating square">
+	<li class="o"></li>
+	<li class="o"></li>
+	<li class="o"></li>
+	<li></li>
+	<li></li>
+</ul>
+```
+
+## Rating - Face
+```
+<ul class="rating face">
+	<li class="o"></li>
+	<li class="o"></li>
+	<li class="o"></li>
+	<li></li>
+	<li></li>
+</ul>
+```
+*/
+
+.rating{
+	@height: 32px;
+
+	position: relative;
+	li{
+		position  : relative;
+		width     : 15px;
+		height    : 15px;
+		display   : inline-block;
+		text-align: center;
+		color     : @themeColor_1;
+		.font_icons();
+		&.o{
+			color: @colorState_disable;
+		}
+	}
+	.rating_icons();
+	&.circle{.rating_icons(@icon:'\f111'; @icon-o:'\f10c';);}
+	&.lang  {.rating_icons(@icon:'\f075'; @icon-o:'\f0e5';);}
+	&.heart {.rating_icons(@icon:'\f004'; @icon-o:'\f004';);}
+	&.square{.rating_icons(@icon:'\f0c8'; @icon-o:'\f096';);}
+	&.face  {.rating_icons(@icon:'\f118'; @icon-o:'\f119';);}
+}
+
+.rating_icons(@icon:'\f005' ; @icon-o:'\f006';){
+	li:after{
+		content: @icon;
+	}
+	li.o:after{
+		content: @icon-o;
+	}
+}

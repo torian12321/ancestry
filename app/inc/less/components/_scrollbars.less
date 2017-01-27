@@ -1,0 +1,65 @@
+/*
+## scrollbars
+
+This scrollbar will be applied to the main page (but not in the styleguide)
+Visible just in some browsers
+```
+<div style="width: 100px; height: 100px; background: #DDD; overflow-x: auto;">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis repudiandae non commodi voluptatibus provident. Excepturi, quasi recusandae, nemo reprehenderit neque, et maiores magni quisquam eaque minus dolorem. Voluptatum, perferendis! Molestias.
+</div>
+```
+
+For more options and information:
+https://css-tricks.com/custom-scrollbars-in-webkit/
+*/
+
+
+
+.scrollbars();
+
+.scrollbars(
+    @color_main : @themeColor_2;
+    @color_sec  : lighten(@color_main, 40%);
+    @size       : 12px;
+    ){
+    ::-webkit-scrollbar {
+        width : @size;
+        height: @size;
+    }
+    ::-webkit-scrollbar-thumb {
+        background : @color_main;
+        border     : @color_sec 2px solid;
+        .rounded(@size);
+    }
+    ::-webkit-scrollbar-track {
+        background: @color_sec;
+    }
+
+    // For Internet Explorer
+    body {
+        scrollbar-face-color : @color_main;
+        scrollbar-track-color: @color_sec;
+    }
+
+    // When abbandon window
+    ::-webkit-scrollbar-thumb:window-inactive {
+        background: mix(@themeColor_2, @color_sec);
+    }
+
+
+    /* For the "inset" look only */
+    /* Add this code for show it on mobile */
+    // html {
+    //     overflow: auto;
+    // }
+    // body {
+    //     position   : absolute;
+    //     top        : 0;
+    //     left       : 0;
+    //     bottom     : 0;
+    //     right      : 0;
+    //     padding    : 0;
+    //     overflow-y : auto;
+    //     overflow-x : hidden;
+    // }
+}

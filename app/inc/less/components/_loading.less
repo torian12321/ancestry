@@ -1,0 +1,43 @@
+/*
+
+## Loading
+```
+<div class="loading"></div>
+```
+
+*/
+
+.loading{
+    @color_main: @themeColor_1;
+    @color_sec : @themeColor_2;
+    @gutter    : 1;
+
+    position  : relative;
+    font-size : 10px;
+    text-align: center;
+    margin    : 2em;
+    &,
+    &:after,
+    &:before{
+        height    : 1em;
+        width     : 1em;
+        background: @color_main;
+        box-shadow: 0 0 0 0 @color_sec;
+        .bouncing_shadow(@color: @color_sec;);
+		.animation(bouncing_shadow; 1s; @speedCurve: ease-in-out);
+    }
+    &:after,
+    &:before{
+        content : '';
+        position: absolute;
+        top     : 0;
+    }
+    &:before{
+        left           : (1 + @gutter) * (-1em);
+        animation-delay: -0.2s
+    }
+    &:after{
+        right          : (1 + @gutter) * (-1em);
+        animation-delay: .2s
+    }
+}

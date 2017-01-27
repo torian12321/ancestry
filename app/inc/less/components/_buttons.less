@@ -1,0 +1,104 @@
+/*
+## Buttons
+```
+	<button class="btn">Button</button>
+	<a href="#" class="btn">Link</a>
+	<button class="btn btn-large">Large button</button>
+```
+
+## Buttons - Colors
+```
+	<button class="btn btn-main">Main</button>
+	<button class="btn btn-sec">Sec</button>
+	<button class="btn btn-red">Red</button>
+	<button class="btn btn-orange">Orange</button>
+	<button class="btn btn-yellow">Yellow</button>
+	<button class="btn btn-purple">Purple</button>
+```
+
+## Buttons - Status
+```
+	<button class="btn btn-main">Default</button>
+	<button class="btn btn-success">Success</button>
+	<button class="btn btn-danger">Danger</button>
+	<button class="btn btn-warning">Warning</button>
+	<button class="btn" disabled="Disabled">Disabled</button>
+```
+
+*/
+
+
+@padding_v: 8px;
+@padding_h: 24px;
+
+.btn{
+	position       : relative;
+	min-width      : 100px;
+	padding        : @padding_v @padding_h;
+	font-size      : 14px;
+	cursor         : pointer;
+	text-transform : uppercase;
+	text-decoration: none;
+	outline        : none !important;
+	letter-spacing : 0.8px;
+
+	.rounded(@BRadious);
+	.transition(@time:0.20s);
+
+	// Status
+	.btn_palette();
+	&:active,
+	&.active{
+		.shadow(0 2px 6px 1px rgba(0,0,0,0.3))
+	}
+	&:disabled,
+	&.disabled,
+  	&[disabled]{
+		background  : @colorState_disable !important;
+		border-color: @colorState_disable !important;
+		color       : @white;
+		box-shadow  : none !important;
+		cursor      : no-drop;
+		.opacity(0.8);
+	}
+
+	// Options
+	&.btn-large{
+		min-width: 200px;
+	}
+	&.btn-auto{
+		min-width: auto;
+	}
+
+	// Styles
+	&.btn-main   { .btn_palette(@themeColor_1;); }
+	&.btn-sec    { .btn_palette(@themeColor_2;);}
+	&.btn-red    { .btn_palette(@red;); }
+	&.btn-orange { .btn_palette(@orange;); }
+	&.btn-yellow { .btn_palette(@yellow;); }
+	&.btn-purple { .btn_palette(@purple;); }
+
+    &.btn-info   { .btn_palette(@colorState_info;    @white); }
+    &.btn-success{ .btn_palette(@colorState_success; @white); }
+    &.btn-warning{ .btn_palette(@colorState_warning; @white); }
+    &.btn-danger { .btn_palette(@colorState_danger;  @white); }
+}
+
+
+// Mixin for colors
+.btn_palette(
+	@color-main: @themeColor_2;
+	@color-sec : @white;
+	@color-txt : @fontColor_grey;)
+{
+	background: @color-sec;
+	color     : @color-txt;
+	border    : @color-txt 1px solid;
+
+	&:hover,
+	&:focus{
+		color       : @color-sec;
+		background  : @color-main;
+		border-color: @color-sec;
+	}
+}

@@ -1,0 +1,185 @@
+ /*
+## Grids - Estandar
+```
+<div class="container">
+	<div class="row">
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #ddd;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #999;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #ddd;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #999;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #ddd;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #999;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #ddd;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #999;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #ddd;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #999;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #ddd;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #999;">xs-1 sm-2 md-3 lg-4</div>
+	</div>
+</div>
+```
+
+## Grids - Spacing
+Use row-spacing instead of just row to add padding to the columns
+```
+<div class="container">
+	<div class="row-spacing">
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #ddd;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #999;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #ddd;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #999;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #ddd;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #999;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #ddd;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #999;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #ddd;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #999;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #ddd;">xs-1 sm-2 md-3 lg-4</div>
+		<div class="xs-1 sm-2 md-3 lg-4" style="background-color: #999;">xs-1 sm-2 md-3 lg-4</div>
+	</div>
+</div>
+```
+*/
+
+.container,
+.container-fluid {
+	margin-right : auto;
+	margin-left  : auto;
+	padding-left : floor((@grid-gutter-width / 2));
+	padding-right: ceil((@grid-gutter-width / 2));
+	&:extend(.clearfix all);
+}
+.container{
+	&:before,
+	&:after{
+		content: '';
+		clear  : both;
+		display: table;
+	}
+}
+
+// Rows contain and clear the floats of your columns.
+.row,
+.row-spacing{
+	margin-left :  ceil((@grid-gutter-width / -2));
+	margin-right: floor((@grid-gutter-width / -2));
+	&:extend(.clearfix all);
+}
+
+
+// Common styles for small and large grid columns
+
+// Extra small grid
+// Columns, offsets, pushes, and pulls for extra small devices like
+.make-grid(@prefix-xs);
+@media (min-width: @bp_sm) {
+	.make-grid(@prefix-sm);
+	.container{ width: @container-sm; }
+}
+
+@media (min-width: @bp_md) {
+	.make-grid(@prefix-md);
+	.container{ width: @container-md; }
+}
+
+@media (min-width: @bp_lg) {
+	.make-grid(@prefix-lg);
+	.container{ width: @container-lg; }
+}
+
+
+
+
+//--------         MIXINS     -------------
+//------- Framework grid generation -------
+//-----------------------------------------
+
+.make-grid-columns(@class) {
+	.col(@index) { // initial
+		@item: ~".@{class}-@{index}";
+		.col((@index + 1), @item);
+	}
+	.col(@index, @list) when (@index =< @grid-columns) { // general
+		@item: ~".@{class}-@{index}";
+		.col((@index + 1), ~"@{list}, @{item}");
+	}
+	.col(@index, @list) when (@index > @grid-columns) { // terminal
+		@{list} {
+			position     : relative;
+			// Prevent columns from collapsing when empty
+			min-height   : 1px;
+			// Inner gutter via padding
+			//padding-left :  ceil((@grid-gutter-width / 2));
+			//padding-right: floor((@grid-gutter-width / 2));
+			float        : left;
+		}
+	}
+	.col(1); // kickstart it
+}
+
+.make-grid-columns-spacing(@class) {
+	.col(@index) { // initial
+		@item: ~".row-spacing > .@{class}-@{index}";
+		.col((@index + 1), @item);
+	}
+	.col(@index, @list) when (@index =< @grid-columns) { // general
+		@item: ~".@{class}-@{index}";
+		.col((@index + 1), ~"@{list}, .row-spacing > @{item}");
+	}
+	.col(@index, @list) when (@index > @grid-columns) { // terminal
+		@{list} {
+			// Inner gutter via padding
+			padding-left :  ceil((@grid-gutter-width / 2));
+			padding-right: floor((@grid-gutter-width / 2));
+		}
+	}
+	.col(1); // kickstart it
+}
+
+.calc-grid-column(@index, @class, @type) when (@type = width) and (@index > 0) {
+	.@{class}-@{index} {
+		width: percentage((@index / @grid-columns));
+	}
+}
+.calc-grid-column(@index, @class, @type) when (@type = push) and (@index > 0) {
+	.@{class}-push-@{index} {
+		left: percentage((@index / @grid-columns));
+	}
+}
+.calc-grid-column(@index, @class, @type) when (@type = push) and (@index = 0) {
+	.@{class}-push-0 {
+		left: auto;
+	}
+}
+.calc-grid-column(@index, @class, @type) when (@type = pull) and (@index > 0) {
+	.@{class}-pull-@{index} {
+		right: percentage((@index / @grid-columns));
+	}
+}
+.calc-grid-column(@index, @class, @type) when (@type = pull) and (@index = 0) {
+	.@{class}-pull-0 {
+		right: auto;
+	}
+}
+.calc-grid-column(@index, @class, @type) when (@type = offset) {
+	.@{class}-offset-@{index} {
+		margin-left: percentage((@index / @grid-columns));
+	}
+}
+
+// Basic looping in LESS
+.loop-grid-columns(@index, @class, @type) when (@index >= 0) {
+	.calc-grid-column(@index, @class, @type);
+	// next iteration
+	.loop-grid-columns((@index - 1), @class, @type);
+}
+
+// Create grid for specific class
+.make-grid(@class) {
+	.make-grid-columns(@class);
+	.make-grid-columns-spacing(@class);
+	.loop-grid-columns(@grid-columns, @class, width);
+	.loop-grid-columns(@grid-columns, @class, pull);
+	.loop-grid-columns(@grid-columns, @class, push);
+	.loop-grid-columns(@grid-columns, @class, offset);
+}

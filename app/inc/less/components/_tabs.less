@@ -1,0 +1,68 @@
+ /*
+## Tabs
+```	
+<div class="tabs">
+    <div class="tabs-header">
+        <label for="content_1" class="active">Tab 1</label>
+        <label for="content_2">Tab 2</label>
+        <label for="content_3">Tab 3</label>
+    </div>
+    <div class="tabs-body">
+        <input type="radio" name="tabs" id="content_1" checked>
+        <div class="fixie"></div>
+
+        <input type="radio" name="tabs" id="content_2">
+        <div class="fixie"></div>
+        
+        <input type="radio" name="tabs" id="content_3">
+        <div class="fixie"></div>
+    </div>
+</div>
+```
+*/
+
+
+.tabs{
+	@color_main   : @themeColor_1;
+	@color_sec    : @themeColor_2;
+	@color_disable: @colorState_disable;
+	
+	.tabs-header{
+		label{		
+			display   : inline-table;
+			width     : 120px;
+			height    : 70px; 
+			padding   : 8px;
+		    margin    : 0 2px 5px;
+		    	&:last-child {margin-right: 0;}
+			background: @color_disable;
+			font-size : 14px;
+			text-align: center;
+			overflow  : hidden;
+			cursor    : pointer;
+			.rounded(@BRadious);
+			.transition(background color);
+			.smart-text-color(@color_disable);
+			&:hover,
+			&.active{
+				background: @color_sec;
+				.smart-text-color(@color_sec);
+			}
+		}
+	}
+
+	.tabs-body{
+		& > input,
+		& > input + div{
+			display   : none;
+			min-height: 200px;
+			padding   : 12px;
+			background: @color_main;
+			.smart-text-color(@color_main);
+			.rounded(@BRadious);
+		}
+		& > input:checked + div{
+			display   : block;
+		}
+	}
+}

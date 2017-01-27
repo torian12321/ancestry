@@ -1,0 +1,71 @@
+//------------------
+//------ Basic -----
+//------------------
+.ini();
+.ini(){
+	// Call by a function to not show this on the styleguide menu
+	@import "_vars.less";
+}
+.basic();
+.basic(){
+	@import "basic/_reset.less";
+	@import "basic/_mixins.less";
+	@import "basic/_animations.less";
+}
+
+/* ### Basic Components ### */
+@import "components/_fonts.less";
+@import "components/_links.less";
+@import "components/_tables.less";
+@import "components/_buttons.less";
+@import "components/_inputs.less";
+@import "components/_selects.less";
+@import "components/_grids.less";
+@import "components/_spacing.less";
+@import "components/_scrollbars.less";
+
+/* ### Components ### */
+@import "components/_forms.less";
+@import "components/_tabs.less";
+@import "components/_progressBars.less";
+@import "components/_quotes.less";
+@import "components/_panels.less";
+@import "components/_ratings.less";
+@import "components/_loading.less";
+@import "components/_accordion.less";
+@import "components/_breadcrumbs.less";
+
+
+
+/* ### Advance Components ### */
+@import "components/_cardNews.less";
+@import "components/_cardUsers.less";
+@import "components/_cardProducts.less";
+
+
+//------------------
+//---- Viewports ---
+//------------------
+.viewports();
+.viewports(){
+	@import "_default.less";
+	@media (max-width: @bp_xs){
+		@import "viewports/_screen_xs.less";
+	}
+	@media (min-width: @bp_sm) {
+		@import "viewports/_screen_sm.less";
+	}
+	@media (min-width: @bp_md) {
+		@import "viewports/_screen_md.less";
+	}
+	@media (min-width: @bp_lg) {
+		@import "viewports/_screen_lg.less";
+	}
+}
+//------------------
+//---- Libraries ---
+//------------------
+.libraries();
+.libraries(){
+	@import "libs/_font-awesome.less";
+}

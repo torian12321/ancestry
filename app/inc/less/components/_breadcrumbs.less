@@ -1,0 +1,89 @@
+
+ /*
+## Breadcrumbs
+```
+<ul class="breadcrumb">
+	<li><a href="#">Level 1</a></li>
+	<li><a href="#">Level 2</a></li>
+	<li><a>Level 3</a></li>
+</ul>
+```
+
+## Breadcrumbs - Arrow
+```
+<ul class="breadcrumb arrow">
+	<li><a href="#">Level 1</a></li>
+	<li><a href="#">Level 2</a></li>
+	<li><a>Level 3</a></li>
+</ul>
+```
+*/
+
+
+.breadcrumb{
+	@color_main: @themeColor_2;
+	@degrees   : 20deg;
+
+	list-style-type: none;
+	a{
+		display    : inline-block;
+		position   : relative;
+		line-height: 2.5;
+		padding    : 0 1.5em;
+		.smart-text-color(@color_main);
+	}
+	li{
+		display : inline-block;
+		position: relative;
+
+		// Last child
+		&:last-child {
+			&:before,
+			&:after {
+				background: lighten(@color_main, 10%);
+			}
+		}
+
+		// :Hover
+		&:not(:last-child):hover {
+			&:before,
+			&:after {
+				background: darken(@color_main, 10%);
+			}
+		}
+		&:before,
+		&:after{
+			content   : '';
+			position  : absolute;
+			top       : 0;
+			left      : 0;
+			height    : 100%;
+			width     : 100%;
+			background: @color_main;
+			transform : skew(-@degrees);
+		}
+		&:after{
+			display: none;
+		}
+	}
+
+	&.arrow{
+		a{
+			z-index: 1;
+		}
+		li{
+			&:before,
+			&:after{
+				height : 50%;
+				z-index: 0;
+			}
+			&:before{
+				transform : skew(@degrees);
+			}
+			&:after {
+				top: 50%;
+				display: block;
+			}
+		}
+	}
+}

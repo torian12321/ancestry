@@ -1,0 +1,44 @@
+ /*
+## Links
+```
+	<a href="#" class="fixie link"></a><br>
+	<a href="#" class="fixie link faded"></a><br>
+	<a href="#" class="fixie link arrowed"></a>
+```
+*/
+.link{
+	color : @fontColor_grey;
+	cursor: pointer;
+	&:hover{
+		color          : @themeColor_2;
+		//text-decoration: underline;
+	}
+	&:visited{
+		color: desaturate(@themeColor_1, 25%);
+	}
+
+	&.faded{
+		.opacity(0.8);
+		&:hover{
+			.opacity(1);
+		}
+	}
+	&.arrowed{
+		@arrow_size: 1em;
+
+		position: relative;
+		&:after{
+			content    : '\f105';
+			position   : absolute;
+			top        : 1px;
+			right      : -@arrow_size * 0.75;
+			line-height: @arrow_size;
+			font-size  : @arrow_size;
+			.transition();
+			.font_icons();
+		}
+		&:hover:after{
+			right: -@arrow_size * 1.5;
+		}
+	}
+}

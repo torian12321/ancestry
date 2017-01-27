@@ -1,0 +1,1 @@
+<?php require_once __dir__ . '/views/home.php'; ?>

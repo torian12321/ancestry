@@ -1,0 +1,271 @@
+/*
+# Progress Bar
+```
+<div style="background-color: #EEE; padding: 25px;">
+	<div class="progressBar" style="margin-bottom: 25px;">
+		<div class="bar" style="width: 72%;">
+			72%
+		</div>
+	</div>
+	<div class="progressBar" style="margin-bottom: 25px;">
+		<div class="bar" style="width: 30%;">
+			€30k
+			<label>€70k</label>
+		</div>
+	</div>
+	<div class="progressBar bordered">
+		<div class="bar" style="width: 45%;">
+			€45k
+			<label>€55k</label>
+		</div>
+	</div>
+</div>
+```
+
+# Progress Bar - Colors
+```
+<div style="background-color: #EEE; padding: 25px;">
+	<div class="progressBar sec" style="margin-bottom: 25px;">
+		<div class="bar" style="width: 72%;">
+			72%
+		</div>
+	</div>
+	<div class="progressBar info" style="margin-bottom: 25px;">
+		<div class="bar" style="width: 30%;">
+			€30k
+			<label>€70k</label>
+		</div>
+	</div>
+	<div class="progressBar bordered success" style="margin-bottom: 25px;">
+		<div class="bar" style="width: 45%;">
+			€45k
+			<label>€55k</label>
+		</div>
+	</div>
+    <div class="progressBar bordered warning" style="margin-bottom: 25px;">
+		<div class="bar" style="width: 45%;">
+			€45k
+			<label>€55k</label>
+		</div>
+	</div>
+    <div class="progressBar bordered danger" style="margin-bottom: 25px;">
+		<div class="bar" style="width: 45%;">
+			€45k
+			<label>€55k</label>
+		</div>
+	</div>
+</div>
+```
+
+
+# Progress Bar - Right
+```
+<div style="background-color: #EEE; padding: 25px;">
+
+	<div class="progressBar pb-right" style="margin-bottom: 25px;">
+		<div class="bar" style="width: 42%;">
+			Dublin
+			<label>€450.00</label>
+		</div>
+	</div>
+
+	<div class="progressBar pb-right" style="margin-bottom: 25px;">
+		<div class="bar" style="width: 80%;">
+			Cork
+			<label>€800.00</label>
+		</div>
+	</div>
+
+	<div class="progressBar pb-right" style="margin-bottom: 25px;">
+		<div class="bar" style="width: 50%;">
+			Limerick
+			<label>€500.00</label>
+		</div>
+	</div>
+
+</div>
+```
+
+
+# Progress Bar - Left
+```
+<div style="background-color: #EEE; padding: 25px;">
+
+	<div class="progressBar pb-left" style="margin-bottom: 25px;">
+		<div class="bar" style="width: 42%;">
+			Dublin
+			<label>€450.00</label>
+		</div>
+	</div>
+
+	<div class="progressBar pb-left" style="margin-bottom: 25px;">
+		<div class="bar" style="width: 80%;">
+			Cork
+			<label>€800.00</label>
+		</div>
+	</div>
+
+	<div class="progressBar pb-left" style="margin-bottom: 25px;">
+		<div class="bar" style="width: 50%;">
+			Limerick
+			<label>€500.000</label>
+		</div>
+	</div>
+
+</div>
+```
+
+# Progress Bar - Underlined
+```
+<div style="background-color: #EEE; padding: 25px;">
+	<div class="progressBar underline" style="margin-bottom: 25px;">
+		<div class="bar" style="width: 72%;">
+			72%
+			<label>€55k</label>
+		</div>
+	</div>
+	<div class="progressBar underline success" style="margin-bottom: 25px;">
+		<div class="bar" style="width: 30%;">
+			€30k
+			<label>€55k</label>
+		</div>
+	</div>
+
+	<div class="progressBar pb-left underline danger">
+		<div class="bar" style="width: 45%;">
+			€45k
+			<label>€55k</label>
+		</div>
+	</div>
+	<div class="progressBar pb-right underline warning">
+		<div class="bar" style="width: 45%;">
+			€45k
+			<label>€55k</label>
+		</div>
+	</div>
+</div>
+```
+*/
+
+.progressBar{
+	@height    : 32px;
+
+
+	position   : relative;
+	width      : 100%;
+	height     : @height;
+	overflow   : hidden;
+	font-size  : @height / 2;
+	line-height: @height;
+	.font-bold();
+	.rounded(@height);
+	&.bordered{
+		border     : solid 2px;
+		line-height: @height - 2px;
+	}
+	label{
+		position  : absolute;
+		top       : 0;
+		left      : 0;
+		height    : 100%;
+		width     : 100%;
+		padding   : 0 20px;
+		text-align: right;
+	}
+	.bar{
+		height     : 100%;
+		padding    : 0 20px;
+		text-align : left;
+        .transition(width);
+		.transition(background);
+	}
+
+	&.underline{
+		overflow  : initial;
+		background: transparent !important;
+		.rounded(0);
+		.bar{
+			height    : @height;
+			background: transparent !important;
+			.rounded(0);
+		}
+	}
+	&.pb-right,
+	&.pb-left{
+		border-bottom: 0 !important;
+		.rounded(0);
+		.bar{
+			position: relative;
+			height  : 100%;
+		}
+		label{
+			.font-light();
+		}
+		&:before{
+			content: none;
+		}
+	}
+
+	&.pb-left .bar{
+		.rounded(0 @height @height 0);
+	}
+	&.pb-right .bar{
+		float     : right;
+		text-align: right;
+		.rounded(@height 0 0 @height);
+		label{
+			text-align: left;
+		}
+	}
+
+	//Colors
+	.progressBar_palette();
+    &.sec    { .progressBar_palette(@themeColor_2; @themeColor_1); }
+    &.info   { .progressBar_palette(@colorState_info); }
+	&.success{ .progressBar_palette(@colorState_success); }
+    &.warning{ .progressBar_palette(@colorState_warning); }
+	&.danger { .progressBar_palette(@colorState_danger); }
+}
+
+
+.progressBar_palette(
+	@color_main: @themeColor_1;
+	@color_sec : @themeColor_2;
+	){
+
+	background: @color_sec;
+	&.bordered{
+		border-color: @color_main;
+	}
+	label{
+		color: @color_main;
+	}
+	.bar{
+		color      : @color_sec;
+		background : @color_main;
+	}
+	&.pb-right,
+	&.pb-left{
+		background: transparent;
+		.bar{
+			.gradient(darken(@color_main, 20%), @color_main, 90deg);
+		}
+		label{
+			.smart-text-color(darken(@color_main, 20%));
+		}
+	}
+	&.underline{
+		@line_height: 5px;
+
+		border-bottom: @line_height @color_sec solid;
+		.rounded(0);
+		.bar{
+			border-bottom: @line_height solid @color_main;
+			color: @color_main;
+			.rounded(0);
+			label{
+				.smart-text-color(@themeColor_BG; @fontColor_white; @fontColor_grey);
+			}
+		}
+	}
+}

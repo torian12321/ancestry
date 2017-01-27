@@ -1,0 +1,190 @@
+/*
+# Time Line
+
+The percentage on the element 'progress' will determin the position
+```
+<div class="timeLine">
+	<div class="progress" style="width: 20%;"></div>
+</div>
+```
+
+# Add progress text
+
+Add the class 'texted' to the parent element
+```
+<div class="timeLine texted">
+	<div class="progress" style="width: 50%;"></div>
+</div>
+```
+
+# Add progress text - Customize
+
+Add the class 'customTitle' to progress element, and aldo, a title property with the custom title
+```
+<div class="timeLine texted">
+	<div class="progress customTitle" title="Custom Title" style="width: 50%;"></div>
+</div>
+```
+
+# Markers
+```
+<div class="timeLine">
+	<div class="progress" style="width: 80%;"></div>
+	<div class="marker"></div>
+</div>
+```
+
+# Markers with text on it
+```
+<div class="timeLine">
+	<div class="progress" style="width: 80%;"></div>
+	<div class="marker">
+		<span>Marker</br>Subtext</span>
+	</div>
+</div>
+```
+
+# Markers - Move the position
+To the marker element, add 'padding-left' or 'left' on the element.
+
+NOTE: It is recommended to use percentage on this value.
+```
+<div class="timeLine">
+	<div class="progress" style="width: 45%;"></div>
+	<div class="marker" style="left: 45%;">
+		<span>Marker</span>
+	</div>
+</div>
+```
+
+# Markers - Danger
+```
+<div class="timeLine">
+	<div class="progress" style="width: 65%;"></div>
+	<div class="marker danger" style="left: 45%;">
+		<span>Marker</span>
+	</div>
+</div>
+```
+
+# Markers(Multiple) + texted
+```
+<div class="timeLine texted">
+	<div class="progress" style="width: 70%;"></div>
+
+	<div class="marker" style="left: 0%;">
+		<span>Marker 1</br>Subtext</span>
+	</div>
+
+	<div class="marker" style="left: 45%;">
+		<span>Marker 2</br>Subtext</span>
+	</div>
+
+	<div class="marker" style="left: 100%;">
+		<span>Marker 3</br>Subtext</span>
+	</div>
+
+</div>
+```
+*/
+
+.timeLine{
+	@height_PB  : 32px;
+	@color_main : @themeColor_1;
+	@color_sec  : @themeColor_2;
+	@color_alert: @colorState_danger;
+
+	position  : relative;
+	width     : 100%;
+	height    : @height_PB;
+	display   : block;
+	background: lighten(@color_alert, 30%);
+	
+	.progress{
+		position  : absolute;
+		top       : 0;
+		bottom    : 0;
+		left      : 0;
+		background: @color_main;
+	}
+	.marker{
+		@circleBorder_w: 2px;
+
+		position  : absolute;
+		height    : @height_PB;
+		text-align: center;
+		span{
+			position: absolute;
+			top     : @height_PB + (2 * @circleBorder_w);
+			width   : 100px;
+			right   : -50px;
+		}
+		&:before,
+		&:after{
+			content    : '';
+			position   : absolute;
+			width      : @height_PB;
+			height     : @height_PB;
+			left       : -@height_PB/2;
+			line-height: @height_PB;
+			font-size  : @height_PB * 0.45;
+			text-align : center;
+			color      : @white;
+			.rounded(50%);
+		}
+		&:before{
+			background : darken(@color_main, 10%);
+			border     : @color_sec solid @circleBorder_w;
+			margin-left: @circleBorder_w;
+			box-sizing : border-box;
+		}
+		&:after{
+			content: '\f024';
+			margin : @circleBorder_w 0 0 @circleBorder_w;
+			.font_icons();
+		}
+
+		&.danger{
+			color: @color_sec;
+			&:before{
+				background: @color_alert;
+			}
+		}
+	}
+
+	&.texted{
+		.progress{
+			@border_w : 2px;
+			@size_x   : 100px;
+			@textSize : 14px;
+			@arrowSize: 16px;
+
+			border-right: @border_w solid @color_alert;
+			&:before,
+			&:after{
+				position  : absolute;
+				right     : (-@size_x / 2) - (@border_w / 2);
+				top       : -(@textSize + @arrowSize);
+				width     : @size_x;
+				color     : @color_alert;
+				text-align: center;
+			}
+			&:before{
+				// Text
+				content  : 'today';
+				font-size: @textSize;
+			}
+			&:after{
+				// Arrow
+				content    : '\f0d7';
+				padding-top: @textSize;
+				font-size  : @arrowSize;
+				.font_icons();
+			}
+
+			&.customTitle:before{
+				content: attr(title);
+			}
+		}
+	}
+}

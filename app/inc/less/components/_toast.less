@@ -1,0 +1,161 @@
+/*
+## Toast
+```
+	<div class="toast">
+        <h1>Main title</h1>
+        Toast content
+    </div>
+    
+    <div class="toast sec">
+        <div class="close"></div>
+        <h1>Main title</h1>
+        Toast content
+    </div>
+```
+
+
+## Toast - Sizes
+```
+	<div class="toast md">
+        <h1>Medium size</h1>
+        Toast content
+    </div>
+    
+    <div class="toast lg">
+        <h1>Large size</h1>
+        Toast content
+    </div>
+```
+
+
+## Toast - Colors greyscale
+```
+	<div class="toast white">
+        <h1>White</h1>
+        Toast content
+    </div>
+    
+    <div class="toast black">
+        <h1>Black</h1>
+        Toast content
+    </div>
+```
+
+
+## Toast - Colors status
+```
+	<div class="toast info">
+        <h1>Info size</h1>
+        Toast content
+    </div>
+    
+    <div class="toast success">
+        <h1>Success size</h1>
+        Toast content
+    </div>
+    
+    <div class="toast warning">
+        <h1>Warning size</h1>
+        Toast content
+    </div>
+    
+    <div class="toast danger">
+        <h1>Danger size</h1>
+        Toast content
+    </div>
+```
+
+
+## Toast - Wrapper
+
+NOTE - This content should be floating on the page
+```
+<div class="toast-wrapp">
+	<div class="toast">
+        <h1>Wrapped 1</h1>
+        Toast content
+    </div>
+    
+    <div class="toast sec">
+        <h1>Wrapped 2</h1>
+        Toast content
+    </div>
+</div>
+```
+*/
+
+
+.toast-wrapp{
+    position: fixed;
+    right   : 0;
+    bottom  : 0;
+    z-index : 500;
+}
+.toast{
+    position        : relative;
+    width           : 240px;
+    min-width       : 240px;
+    margin          : 8px;
+    padding         : 8px 12px;
+    font-size       : 14px;
+    text-transform  : none;
+    border          : solid 1px;
+    border-top-width: 4px;
+    opacity         : 0.8;
+
+    .shadow();
+    .rounded();
+    .transition();
+    &:hover{
+        opacity: 1;
+    }
+    h1, h2, h3, h4, h5, h6{
+        font-size     : 1.25em;
+        margin        : 0 0 8px;
+        text-transform: none;
+    }
+    .close{
+        position   : absolute;
+        top        : 0;
+        right      : 0;
+        font-size  : 16px;
+        width      : 1.5em;
+        line-height: 1.5em;
+        text-align : center;
+        cursor     : pointer;
+        &:after{
+            .font_icons("\f00d");
+        }
+    }
+    // Sizes
+    &.md{ width: 40%; }
+    &.lg{ width: 100%;}
+
+    // Styles
+    .toast_palette();
+    &.sec    { .toast_palette(@themeColor_2); }
+    &.white  { .toast_palette(@themeColor_1, @white); }
+    &.black  { .toast_palette(@themeColor_1, lighten(@black, 20%)); }
+    &.info   { .toast_palette(@colorState_info); }
+    &.success{ .toast_palette(@colorState_success); }
+    &.warning{ .toast_palette(@colorState_warning); }
+    &.danger { .toast_palette(@colorState_danger); }
+}
+
+
+
+// Mixin for colors
+.toast_palette(
+    @color_main: @themeColor_1;
+    @color_sec : lighten(@color_main, 40%);
+){
+	background      : @color_sec;
+    border-color    : darken(@color_sec, 20%);
+	border-top-color: @color_main;
+
+    .smart-text-color(@color_sec);
+    h1, h2, h3, h4, h5, h6,
+    strong{
+        color: @color_main;
+    }
+}

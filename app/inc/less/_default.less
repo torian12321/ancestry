@@ -1,0 +1,35 @@
+.right{
+	float: right;
+}
+.left{
+	float: left;
+}
+.center{
+	text-align: center;
+}
+.clear{
+	clear: both;
+}
+.fullHeight{
+	min-height: 100vh;
+}
+.parallax{
+	.background-parallax('@{defImgDir}/header.png');
+}
+
+
+//---------------------
+//--- General page ----
+//---------------------
+
+body{
+	color     : @fontColor_black;
+	background: @themeColor_BG;
+	.font();
+}
+
+#footer{
+	min-height: 60px;
+	padding   : 20px;
+	background: @grey;
+}

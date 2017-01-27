@@ -1,0 +1,76 @@
+ /*
+## Tables
+```
+<table>
+	<thead>
+		<tr>
+		    <th>Firstname</th>
+		    <th>Lastname</th>
+		    <th>Savings</th>
+	 	</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Peter</td>
+			<td>Griffin</td>
+			<td>$100</td>
+		</tr>
+		<tr>
+			<td>Lois</td>
+			<td>Griffin</td>
+			<td>$150</td>
+		</tr>
+		<tr>
+			<td>Joe</td>
+			<td>Swanson</td>
+			<td>$300</td>
+		</tr>
+		<tr>
+			<td>Cleveland</td>
+			<td>Brown</td>
+			<td>$250</td>
+		</tr>
+	</tbody>
+</table>
+```
+*/
+table{
+	overflow: hidden;
+	.rounded(@BRadious);
+}
+
+@color_main: @themeColor_2;
+@color_sec : @white;
+
+thead,
+tfoot,
+th{
+	background: @color_main;
+	.smart-text-color(@color_main);
+	&.shortable{
+		cursor: pointer;
+		&:hover{
+			background: darken(@color_main, 5%)
+		}
+	}
+}
+tr{
+	background: @color_sec;
+	.smart-text-color(@color_sec, @fontColor_white, @fontColor_grey);
+	&:nth-child(odd){
+		background: fadeout(@color_main, 80%);
+	}
+	&:hover{
+		background: fadeout(@color_main, 50%);
+	}
+}
+th,
+td{
+	position: relative;
+	padding : 10px 40px 10px 16px;
+	i{
+		position: absolute;
+		top     : 5px;
+		right   : 5px;
+	}
+}

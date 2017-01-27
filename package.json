@@ -1,0 +1,41 @@
+{
+	"name"        : "Ancestry",
+    "description" : "Discover what makes you uniquely you",
+    "author"      : "Aitor Palomares",
+	"version"     : "0.1",
+	"license"     : "MIT",
+    "repository"  : {
+      "type": "git",
+      "url" : "https://github.com/torian12321/ancestry"
+    },
+	"scripts"	  : {
+        "test"      : "echo \"Error: no test specified\" && exit 1",
+        "start"     : "npm run build && npm run server:php",
+        "server"    : "node server.js",
+        "server:php": "node server-php.js",
+        "build"     : "gulp build",
+        "build:all" : "gulp build:dist",
+        "build:dist": "gulp build:dist",
+        "watch"     : "gulp watch",
+        "scripts"   : "gulp scripts",
+        "styles"    : "gulp styles"
+	},
+    "dependencies": {
+        "express"          : "^4.13.4",
+        "chalk"            : "1.1.3",
+        "express-php"      : "*",
+		"gulp"             : "*",
+		"gulp-less"        : "*",
+		"gulp-clean-css"   : "*",
+		"gulp-autoprefixer": "*",
+		"gulp-autoprefixer": "*",
+		"gulp-php2html"    : "*",
+		"gulp-concat"      : "*",
+		"gulp-uglify"      : "*",
+		"gulp-php2html"    : "*",
+		"gulp-htmlmin"     : "*",
+		"gulp-clean"       : "*",
+		"gulp-imagemin"    : "*",
+        "ip"               : "1.1.3"
+    }
+}
