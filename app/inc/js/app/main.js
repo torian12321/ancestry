@@ -2,8 +2,6 @@ var
 _doc = document,
 _win = window,
 init = function(){
-    smoothScrolling();
-	fancy_functions.run();
     fitContentOnScreen();
 },
 resize = function(){
