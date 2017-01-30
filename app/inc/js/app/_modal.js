@@ -1,5 +1,9 @@
 var
-modal = (function(){
+modal = (function($, _doc){
+	var
+    modal    = _doc.querySelector('.modal'),
+    btnClose = _doc.querySelector('#btnClose');
+
 	var
 	mailing_URL = "./inc/ajax/suscribe.php",
 	ajax        = new XMLHttpRequest(),
@@ -8,11 +12,12 @@ modal = (function(){
 	email       = $('#subscribe-mail input');
 
 	var
-	_show = function(){
-
+	_open = function(){
+		modal.classList.add('active');
 	},
-	_hidde = function(){
-
+	_close = function(){
+		modal.classList.remove('active');
+        // TODO: clean the form values?
 	},
 	_validField  = function(field, type){
 		var valid = (field.val() != '') ? true : false;
@@ -66,8 +71,14 @@ modal = (function(){
 		}
 	};
 
+	if (btnClose){
+        btnClose.addEventListener('click', _close);
+    }
+
 	return{
-		show : _show,
-		hidde: _hidde
+		show : _open,
+		open : _open,
+		hidde: _close,
+        close: _close
 	};
-})();
+})(jQuery, document);
