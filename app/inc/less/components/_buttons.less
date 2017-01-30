@@ -41,9 +41,9 @@
 	text-decoration: none;
 	outline        : none !important;
 	letter-spacing : 0.8px;
+	font-weight    : bold;
 
 	.rounded(@BRadious);
-	.transition(@time:0.20s);
 
 	// Status
 	.btn_palette();
@@ -73,10 +73,6 @@
 	// Styles
 	&.btn-main   { .btn_palette(@themeColor_1;); }
 	&.btn-sec    { .btn_palette(@themeColor_2;);}
-	&.btn-red    { .btn_palette(@red;); }
-	&.btn-orange { .btn_palette(@orange;); }
-	&.btn-yellow { .btn_palette(@yellow;); }
-	&.btn-purple { .btn_palette(@purple;); }
 
     &.btn-info   { .btn_palette(@colorState_info;    @white); }
     &.btn-success{ .btn_palette(@colorState_success; @white); }
@@ -84,21 +80,21 @@
     &.btn-danger { .btn_palette(@colorState_danger;  @white); }
 }
 
-
 // Mixin for colors
 .btn_palette(
-	@color-main: @themeColor_2;
-	@color-sec : @white;
-	@color-txt : @fontColor_grey;)
+	@color-bg : @themeColor_2;
+	@color-txt: @fontColor_white;)
 {
-	background: @color-sec;
-	color     : @color-txt;
-	border    : @color-txt 1px solid;
+	color : @color-txt;
+	border: none;
 
+	.gradient(
+		lighten(@color-bg, 10%);
+		darken( @color-bg, 10%);
+		180deg;
+		);
 	&:hover,
 	&:focus{
-		color       : @color-sec;
-		background  : @color-main;
-		border-color: @color-sec;
+		background: darken( @color-bg, 10%);
 	}
 }

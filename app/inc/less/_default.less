@@ -23,8 +23,9 @@
 //---------------------
 
 body{
+	font-size : 16px;
 	color     : @fontColor_black;
-	background: @themeColor_BG;
+	background: @white_2;
 	.font();
 }
 
@@ -33,8 +34,13 @@ body{
 	height    : 100px;
 	background: @blue;
 	color     : @fontColor_white;
+	
+	.background-img('@{defImgDir}/header.jpg');
 	h1{
 
+	}
+	.breadcrumbs a{
+		color: @fontColor_white;
 	}
 }
 #footer{
@@ -49,10 +55,7 @@ body{
 		}
 	}
 }
-.panel{
-	background: @white;
-	.rounded();
-	&.sec{
-		background: @white_2;
-	}
+#main-area{
+	min-height: 300px;
+	background: @themeColor_BG;
 }

@@ -18,19 +18,14 @@
 ```
 */
 .panel{
-	display          : block;
-	margin           : 20px 0;
-	padding          : 20px 10px;
-	background       : @white;
-	border           : solid 1px darken(@white, 10%);
-	border-left-width: 10px;
-	border-left-color: @themeColor_1;
+	min-height: 100px;
+	padding   : 12px;
+	margin    : 6px;
+	background: #fff;
+	//border: red 1px solid;
 	.rounded();
-	&.important{
-		.shadow(@shadow);
+	.shadow();
+	&.sec{
+		background: @white_2;
 	}
-	&.info   {border-left-color: @colorState_info;}
-	&.success{border-left-color: @colorState_success;}
-	&.warning{border-left-color: @colorState_warning;}
-	&.danger {border-left-color: @colorState_danger;}
 }
