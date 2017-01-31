@@ -18,6 +18,7 @@ var paths = {
 	js     : './inc/js/',
 	jsApp  : './inc/js/app/',
 	jsLib  : './inc/js/lib/',
+	ajax   : './inc/ajax/lib/',
 	css    : './inc/css/',
 	less   : './inc/less/',
 	img    : './inc/img/',
@@ -55,9 +56,6 @@ gulp.task('scripts', ['js_libs', 'js_app']);
 		return gulp.src([
 				paths.app + paths.jsLib + 'jquery-v3.0.0.js',
 				//paths.app + paths.jsLib + 'html5-v3.7.3.js',
-				//paths.app + paths.jsLib + 'knockout.js',
-				//paths.app + paths.jsLib + 'angular-v1.5.6.js',
-				//paths.app + paths.jsLib + 'angular-route-1.5.6.js'
 			])
 			.pipe(concat('libs.js'))
 			.pipe(uglify())
@@ -150,7 +148,8 @@ gulp.task('build-dist', ['build_dist-remove'], function(){
 				paths.app + 'manifest.json',
 				paths.app + 'manifest.webapp',
                 paths.app + 'service-worker.js',
-				paths.app + 'robots.txt'
+				paths.app + 'robots.txt',
+				paths.ajax+ '**.*.php'
 			])
 			.on('error', errorLog)
 			.pipe(gulp.dest(paths.dist));

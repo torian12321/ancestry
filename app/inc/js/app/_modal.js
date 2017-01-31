@@ -1,18 +1,17 @@
 var
 modal = (function($, _doc){
 	var
+	mailing_URL  = "./inc/ajax/suscribe.php",
+	ajax         = new XMLHttpRequest(),
 	modal        = _doc.querySelector('.modal'),
 	user_name    = _doc.getElementById('modal_name'),
 	user_surname = _doc.getElementById('modal_surname'),
 	user_emaile  = _doc.getElementById('modal_email'),
-	btnClose     = _doc.querySelector('#btnClose');
-
-	var
-	mailing_URL = "./inc/ajax/suscribe.php",
-	ajax        = new XMLHttpRequest(),
-	name        = $('#subscribe-name input'),
-	surname     = $('#subscribe-surname input'),
-	email       = $('#subscribe-mail input');
+	btnSubmit    = _doc.querySelector('#btnSubmit'),
+	btnClose     = _doc.querySelector('#btnClose'),
+	name         = _doc.getElementById('subscribe-name'),
+	surname      = _doc.getElementById('subscribe-surname'),
+	email        = _doc.getElementById('subscribe-email');
 
 	var
 	_open = function(){
@@ -23,44 +22,51 @@ modal = (function($, _doc){
         // TODO: clean the form values?
 	},
 	_validField  = function(field, type){
-		var valid = (field.val() != '') ? true : false;
+		var valid = (field.value != '') ? true : false;
 
 
 		if(type === 'email'){
 			var
 			emailFilter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
-			valid       = emailFilter.test(field.val()) ? true : false;
+			valid       = emailFilter.test(field.value) ? true : false;
 		}
 
 		if(!valid && type !== 'email'){
 			field.focus();
 		}
 
-		field.toggleClass('error', !valid);
+		if(valid){
+			field.parentNode.classList.remove('error');
+		}else{
+			field.parentNode.classList.add('error');
+		}
+
+
+
 		return valid;
 	},
 	_submit = function(){
+		var validForm = true;
 
+		validForm = _validField(name) ? validForm : false;
+		validForm = _validField(surname) ? validForm : false;
+		validForm = _validField(email, 'email') ? validForm : false;
 		// Prevent dobleClick
-		//btn_mailing.prop("disabled", true);
+		//btnSubmit.prop("disabled", true);
 
-		if(
-			validField(name)          &&
-			validField(surname)       &&
-			validField(email, 'email')
-		){
+		if(validForm){
 	    	var postRequest =
-				'name='     + name.val()    +
-				'&company=' + company.val() +
-				'&email='   + email.val();
+				'name='     + name.value    +
+				'&surname=' + surname.value +
+				'&email='   + email.value;
 
 			ajax.onreadystatechange = function() {
 		        if (ajax.readyState == 4 && ajax.status == 200) {
 		            if (ajax.responseText > 0){
 		                var animationTime = 500;
-						$('#mailingList .mail-deffault').fadeOut(animationTime);
-						$('#mailingList .mail-success').delay(animationTime).fadeIn(animationTime);
+						// Send email, show confirmation, etc
 		            }else {
+		            	//btnSubmit.prop("disabled", false);
 		            	// console.log('error');
 		            }
 		        }
@@ -70,15 +76,20 @@ modal = (function($, _doc){
 		    ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		    ajax.send(postRequest);
 		}else{
-			btn_mailing.prop("disabled", false);
+			//btnSubmit.prop("disabled", false);
 		}
 	};
 
 	if (btnClose){
         btnClose.addEventListener('click', _close);
     }
+    if (btnSubmit){
+        btnSubmit.addEventListener('click', _submit);
+    }
 
-    
+
+
+
 
 	return{
 		show : _open,
