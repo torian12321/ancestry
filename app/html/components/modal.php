@@ -1,4 +1,4 @@
-<div class="modal active">
+<div class="modal">
 	<div class="modal-bg">
 	<div class="modal-body">
 			<button id="btnClose"><i class="fa fa-times"></i></button>
