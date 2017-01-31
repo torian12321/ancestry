@@ -23,16 +23,17 @@
 //---------------------
 
 body{
-	font-size : 16px;
-	color     : @fontColor_black;
-	background: @white_2;
+	font-size  : 16px;
+	line-height: 1.5;
+	color      : @fontColor_black;
+	background : @white_2;
 	.font();
 }
 
 
 #header{
 	position: relative;
-	height  : 100px;
+	height  : 140px;
 	color   : @fontColor_white;
 
 	.background-img(
@@ -49,7 +50,9 @@ body{
 		background: fadeout(@blue, 10%);
 	}
 	h1{
-
+		margin-top: 14px;
+		color     : @fontColor_white;
+		text-align: center;
 	}
 	.breadcrumbs a{
 		color: @fontColor_white;
@@ -69,5 +72,6 @@ body{
 }
 #main-area{
 	min-height: 300px;
+	padding   : 12px 0;
 	background: @themeColor_BG;
 }

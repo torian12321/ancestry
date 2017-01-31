@@ -1,4 +1,7 @@
+
 .modal{
+	@BR: 6px;
+
 	position: fixed;
 	top     : 0;
 	left    : 0;
@@ -10,6 +13,12 @@
 		z-index: 1000;
 	}
 
+	span{
+		display    : block;
+		margin     : 16px 0 0;
+		font-size  : 12px;
+		line-height: 1.25;
+	}
 	.modal-bg{
 		position  : absolute;
 		width     : 100vw;
@@ -25,19 +34,15 @@
 		min-width : 300px;
 		max-width : 600px;
 		margin    : 100px auto;
-		background: @BG;
-		border    : darken(@BG, 10%);
-		//overflow  : hidden;
-		.rounded();
 
 		> div{
-			padding: 24px;
+			padding: 14px;
 		}
 
 		#btnClose{
 			@color : #787774;
 
-			font-size  : 20px;
+			font-size  : 14px;
 			position   : absolute;
 			top        : -1em;
 			right      : -1em;
@@ -57,75 +62,23 @@
 			}
 		}
 		.modal-header{
-			background: @white;
-			font-size: 20px;
+			background: #fff;
+			font-size : 20px;
+			overflow  : hidden;
+
+			.rounded(@BR; @BR; 0; 0);
 		}
 		.modal-content{
-			background  : darken(@BG, 5%);
-			border      : darken(@BG, 15%) solid 2px;
-			border-left : none;
-			border-right: none;
+
+			background: @white;
+			.rounded(0; 0; @BR; @BR;);
 
 			.modal-content-wrap{
 				max-width: 400px;
 				margin   : 30px auto;
 			}
 
-			.title{
-				font-size  : 14px;
-				color      : @fontColor_black;
-				font-weight: bold;
 
-				@phone_BG: darken(@BG, 10%);
-				@phone_BR: @BRadious;
-				.phone,
-				.phone-prefix{
-					padding : 6px;
-					overflow: hidden;
-					border  : darken(@phone_BG, 25%) solid 1px;
-				}
-
-				.phone-prefix{
-					margin-left: 12px;
-					background : darken(@phone_BG, 15%);
-					.rounded(@phone_BR; 0; 0; @phone_BR);
-				}
-				.phone{
-					background: @phone_BG;
-					.rounded(0; @phone_BR; @phone_BR; 0);
-				}
-			}
-
-			#code{
-				display: flex;
-				padding: 20px 0;
-				input{
-					font-size  : 24px;
-					min-width  : 2em;
-					width      : 2em;
-					height     : 2em;
-					line-height: 2em;
-					text-align : center;
-					margin     : 0 auto;
-					&:first-child{ margin-left : 0; }
-					&:last-child { margin-right: 0; }
-				}
-			}
-			.option{
-				i{
-					margin-right: 10px;
-					color: @themeColor_1;
-				}
-			}
-		}
-		.modal-footer{
-			button{
-				margin-right: 10px;
-			}
-			.link{
-				margin: 14px 0;
-				float: right;
-			}
 
 		}
 	}

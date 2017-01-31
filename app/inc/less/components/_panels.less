@@ -22,14 +22,30 @@
 	padding   : 12px;
 	margin    : 6px;
 	background: #fff;
-	//border: red 1px solid;
-	.rounded();
-	.shadow();
 
+	.rounded(6px);
+	.shadow();
+	span{
+		display: block;
+		margin : 16px 0;
+	}
+	h1, h2, h3, h4, h5, h6{
+		font-size  : 24px;
+		color      : @fontColor_grey;
+		line-height: 1.25;
+	}
 	img{
 		width: 100%;
 	}
+	button{
+		display: block;
+	}
 
+	&.panel_featured{
+		a{
+			display: block;
+		}
+	}
 	&.panel_subscribe{
 		background: #f1eee9;
 	}

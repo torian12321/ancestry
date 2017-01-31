@@ -8,8 +8,9 @@
 			<ul class="breadcrumbs">
 				<li><a href="#">Home</a></li>
 				<li><a href="#">Search</a></li>
-				<li><a>Level 3</a></li>
+				<li><a>US Military Collection</a></li>
 			</ul>
+			<h1>U.S. Military Collection</h1>
 
 		</div>
 	</div>
@@ -21,7 +22,7 @@
 <div class="container">
 	<div class="row">
 
-		<div class="xs-12 sm-8">
+		<div class="xs-12 md-8">
 			<div class="panel panelMain">
 				<h2>World conflicts. Personal stories.</h2>
 				<span>
@@ -35,7 +36,7 @@
 			</div>
 		</div>
 
-	<div class="xs-12 sm-4">
+	<div class="xs-12 md-4">
 		<?php require_once __dir__ . '/html/components/sideBar.php'; ?>
 	</div>
 

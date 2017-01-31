@@ -4,23 +4,23 @@
 ```
 <form autocomplete="off">
 	<div class="form-input">
-		<input id="input-1" type="text" required>
 		<label for="input-1">Name</label>
+		<input id="input-1" type="text" required>
 	</div>
 
 	<div class="form-input">
-		<input id="input-2" type="text" required>
 		<label for="input-2">Surname</label>
+		<input id="input-2" type="text" required>
 	</div>
 
-	<div class="form-input">
-		<input id="input-3" type="text" required>
+	<div class="form-input error">
 		<label for="input-3">Nick</label>
+		<input id="input-3" type="text" required>
 	</div>
 
 	<div class="form-input">
-		<input id="input-4" type="password" required>
 		<label for="input-4">password</label>
+		<input id="input-4" type="password" required>
 	</div>
 </form>
 ```
@@ -34,59 +34,39 @@
 </div>
 ```
 */
-.form-input,
-.form-search{
-	position: relative;
-	padding :  @inputHeight 0 0px;
+.form-input{
+	padding :  0 8px 14px 0;
 
-	label{
-		position   : absolute;
-		left       : 10px;
-		top        : @inputHeight;
-		line-height: @inputHeight;
-		color      : @themeColor_1;
-		.transition();
+	input{
+		width: 100%;
 	}
-	input,
-	textarea{
-		&.filled + label,
-		&:focus + label,
-		&:valid + label{
-			top: 0;
+	label{
+		display    : block;
+		color      : @fontColor_grey;
+		font-size  : 14px; 
+		font-weight: bold;
+		.transition(color);
+	}
+	.error-txt{
+		margin : 0 0 0 6px; 
+		display: none;
+	}
+	&.error{
+		&,
+		& label,
+		& input{
+			color: @colorState_danger !important;
+		}
+		input{
+			font-weight : 100;
+			border-color: @colorState_danger;
+		}
+		.error-txt{
+			display: inline;
 		}
 	}
 }
 
-/*
-## Search field
-```
-<div class="form-search" style="width: 200px;">
-	<input name="search-2" type="text">
-</div>
-
-<div class="form-search" style="width: 200px;">
-	<input name="search-2" type="text" required>
-	<label for="search-2">Search</label>
-</div>
-
-```
-*/
-.form-search{
-	position: relative;
-	input{
-		width        : 100%;
-		padding-right: 30px;
-	}
-	&:after{
-		position   : absolute;
-		content    : '\f002';
-		font-family: FontAwesome;
-		right      : 10px;
-		bottom     : 10px;
-		color      : @themeColor_1;
-		.transition(color);
-	}
-}
 
 
 /*
@@ -240,67 +220,6 @@
 	}
 }
 
-/*
-# CheckBox - Icon
-```
-<div class="form-check-icon">
-	<input id="CBI-1" type="checkbox" checked>
-	<label for="CBI-1"></label>
-</div>
-
-<div class="form-check-icon">
-	<input id="CBI-2" type="checkbox">
-	<label for="CBI-2"></label>
-</div>
-
-<div class="form-check-icon">
-	<input id="CBI-3" type="checkbox">
-	<label for="CBI-3"></label>
-</div>
-```
-*/
-.form-check-icon{
-	@size : @inputHeight;
-
-
-	label{
-		position       : relative;
-		display        : block;
-		width          : @size;
-		height         : @size;
-		cursor         : pointer;
-		transform-style: preserve-3d;
-		.transition(@property: transform;);
-		&:after,
-		&:before{
-			position           : absolute;
-			top                : 0;
-			left               : 0;
-			bottom             : 0;
-			right              : 0;
-			text-align         : center;
-			display            : block;
-			font-size          : @size;
-			backface-visibility: hidden;
-			.font_icons();
-		}
-		&:before{
-			content: "\f057";
-			color  : @colorState_disable;
-		}
-		&:after{
-			content  : "\f058";
-			color    : @themeColor_1;
-			transform: translate3d(0, 0, 0) rotateY(180deg);
-		}
-	}
-	input{
-		display: none;
-		&:checked + label{
-			transform: translate3d(0, 0, 0) rotateY(180deg);
-		}
-	}
-}
 
 /*
 # Switch
@@ -313,19 +232,6 @@
 <div class="form-switch">
 	<input id="switch-5" type="checkbox" checked>
 	<label for="switch-5"></label>
-</div>
-```
-
-# Check (texted)
-```
-<div class="form-switch texted">
-	<input id="switch-6" type="checkbox">
-	<label for="switch-6"></label>
-</div>
-
-<div class="form-switch texted">
-	<input id="switch-7" type="checkbox" checked>
-	<label for="switch-7"></label>
 </div>
 ```
 */
@@ -366,326 +272,4 @@
 			}
 		}
 	}
-
-	&.texted input[type="checkbox"]{
-		& + label{
-			&:before{
-				position   : absolute;
-				content    : 'Off';
-				right      : 12.5%;
-				font-size  : @height * 0.5;
-				line-height: @height;
-				color      : @white;
-				.transition(@transition-time);
-			}
-		}
-		&:checked + label{
-			&:before{
-				content: 'On';
-				right  : 55%;
-			}
-		}
-	}
 }
-
-/*
-# Select - Single
-```
-<div>
-	<ul class="form-selectSingle">
-		<li>
-			<input type="radio" id="option_01" name="ss" checked>
-	    	<label for="option_01">All types</label>
-		</li>
-		<li>
-			<input type="radio" id="option_02" name="ss">
-	    	<label for="option_02">Second-hand</label>
-		</li>
-		<li>
-			<input type="radio" id="option_03" name="ss">
-	    	<label for="option_03">New</label>
-		</li>
-	</ul>
-</div>
-```
-
-# Select - Multiple
-```
-<div>
-	<ul class="form-selectMultiple">
-		<li>
-			<input type="checkbox" id="option_04" name="selector" checked>
-	    	<label for="option_04">All types</label>
-		</li>
-		<li>
-			<input type="checkbox" id="option_05" name="selector">
-	    	<label for="option_05">Second-hand</label>
-		</li>
-		<li>
-			<input type="checkbox" id="option_06" name="selector">
-	    	<label for="option_06">New</label>
-		</li>
-	</ul>
-</div>
-```
-
-# Select - Multiple (Void)
-```
-<div>
-	<ul class="form-selectMultiple o">
-		<li>
-			<input type="checkbox" id="smh-1" name="smh" checked>
-	    	<label for="smh-1">All types</label>
-		</li>
-		<li>
-			<input type="checkbox" id="smh-2" name="smh">
-	    	<label for="smh-2">Second-hand</label>
-		</li>
-		<li>
-			<input type="checkbox" id="smh-3" name="smh">
-	    	<label for="smh-3">New</label>
-		</li>
-	</ul>
-</div>
-```
-*/
-
-.form-selectSingle,
-.form-selectMultiple{
-
-	text-transform: uppercase;
-	color         : @fontColor_grey;
-
-	input{
-		display: none;
-		& + label{
-			display   : block;
-			padding   : 9px 12px;
-			margin    : 0 0 6px;
-			background: darken(@themeColor_2, 10%);
-			cursor    : pointer;
-			.transition();
-			.rounded(@BRadious);
-			.font();
-			&:hover{
-				background: darken(@themeColor_1, 25%);
-			}
-		}
-		&:checked + label{
-			background: @themeColor_1;
-			color     : @fontColor_white;
-		}
-	}
-	&.o{
-		input{
-			& + label{
-				background: transparent;
-				color     : @themeColor_1;
-				border    : @themeColor_1 1px solid !important;
-			}
-			&:checked + label{
-				background: @themeColor_1;
-				color     : @fontColor_white;
-			}
-		}
-	}
-}
-/*
-# Select - Single (single line)
-```
-<div>
-	<ul class="form-selectSingle singleLine">
-		<li>
-			<input type="radio" id="option_01-1" name="selector" checked>
-	    	<label for="option_01-1">All types</label>
-		</li>
-		<li>
-			<input type="radio" id="option_01-2" name="selector">
-	    	<label for="option_01-2">Second-hand</label>
-		</li>
-		<li>
-			<input type="radio" id="option_01-3" name="selector">
-	    	<label for="option_01-3">New</label>
-		</li>
-	</ul>
-</div>
-```
-
-
-# Select - Multiple (single line)
-```
-<div>
-	<ul class="form-selectMultiple singleLine">
-		<li>
-			<input type="checkbox" id="option_02-1" name="selector" checked>
-	    	<label for="option_02-1">All types</label>
-		</li>
-		<li>
-			<input type="checkbox" id="option_02-2" name="selector">
-	    	<label for="option_02-2">Second-hand</label>
-		</li>
-		<li>
-			<input type="checkbox" id="option_02-3" name="selector">
-	    	<label for="option_02-3">New</label>
-		</li>
-	</ul>
-</div>
-```
-
-# Select - Single (single line + Void + Arrow)
-```
-<div>
-	<ul class="form-selectSingle singleLine o arrowed">
-		<li>
-			<input type="radio" id="sslha-1" name="sslha" checked>
-	    	<label for="sslha-1">All types</label>
-		</li>
-		<li>
-			<input type="radio" id="sslha-2" name="sslha">
-	    	<label for="sslha-2">Second-hand</label>
-		</li>
-		<li>
-			<input type="radio" id="sslha-3" name="sslha">
-	    	<label for="sslha-3">New</label>
-		</li>
-	</ul>
-</div>
-```
-*/
-
-.form-selectSingle.singleLine,
-.form-selectMultiple.singleLine{
-	li{
-		display: inline-block;
-		margin : 0 -2px;
-		label{
-			border-right : 2px solid @themeColor_1;
-			padding-left : 30px;
-			padding-right: 30px;
-			.rounded(0);
-		}
-
-		&:first-child label{
-			.rounded(@BRadious  0 0 @BRadious);
-		}
-		&:last-child label{
-			border-right: 0;
-			.rounded(0 @BRadious @BRadious 0);
-		}
-	}
-	&.arrowed input{
-		& + label{
-			position: relative;
-			&:after{
-				content         : '';
-				position        : absolute;
-				left            : 50%;
-				top             : 100%;
-				margin-left     : 0;
-				height          : 0;
-				width           : 0;
-				border          : solid transparent 0;
-				.transition(border margin-left);
-			}
-		}
-		&:checked + label:after{
-			@size: 12px;
-
-			margin-left     : -@size;
-			border          : solid transparent @size;
-			border-top-color: @themeColor_1;
-		}
-	}
-}
-/*
-# Select List
-```
-<div class="form-selectList">
-	<select name="slct" id="slct">
-		<option>Choose an option</option>
-		<option value="1">Option A</option>
-		<option value="2">Option B</option>
-		<option value="3">Option C</option>
-		<option value="4">Option D</option>
-	</select>
-	<div class="arrow"></div>
-</div>
-```
-*/
-
-.form-selectList{
-	position   : relative;
-	display    : block;
-	width      : 100%;
-	height     : @inputHeight;
-	line-height: @inputHeight;
-	overflow   : hidden;
-	.rounded(@BRadious);
-	select{
-		padding: 0 20px 0 10px;
-	}
-	// Arrow
-	.arrow:after{
-		content       : '\f107';
-		position      : absolute;
-		top           : 0;
-		right         : 10px;
-		bottom        : 0;
-		font-size     : 20px;
-		color         : @fontColor_white;
-		pointer-events: none;
-		.font_icons()
-	}
-	select:hover:focus + .arrow:after{
-		content: '\f106';
-	}
-}
-
-
-/*
-## Range
-NOTE: not supported in Internet Explorer 9 and earlier versions.
-```
-	<input type="range" min="0" value="50" max="100" step="1">
-```
-*/
-
-@range_track_height: 5px;
-@range_thumb_size  : 20px;
-.form-range(){
-	border            : none;
-	-webkit-appearance: none;
-	width             : 100%;
-	display           : block;
-	cursor            : pointer;
-	.shadow(none);
-}
-
-.form-range-track(){
-	height       : @range_track_height;
-	background   : @themeColor_2;
-	.rounded(@range_track_height);
-}
-
-.form-range-thumb(){
-	-webkit-appearance: none;
-	margin-top        : (@range_track_height / 2) - (@range_thumb_size / 2);
-	height            : @range_thumb_size;
-	width             : @range_thumb_size;
-	background        : @themeColor_1;
-	//border            : @themeColor_2 @range_track_height solid ;
-	.rounded(50%);
-}
-
-input[type=range]{
-  .form-range();
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-	.form-range-track();
-}
-
-input[type=range]::-webkit-slider-thumb {
-  .form-range-thumb();
-}
-

@@ -1,8 +1,11 @@
 var
 modal = (function($, _doc){
 	var
-    modal    = _doc.querySelector('.modal'),
-    btnClose = _doc.querySelector('#btnClose');
+	modal        = _doc.querySelector('.modal'),
+	user_name    = _doc.getElementById('modal_name'),
+	user_surname = _doc.getElementById('modal_surname'),
+	user_emaile  = _doc.getElementById('modal_email'),
+	btnClose     = _doc.querySelector('#btnClose');
 
 	var
 	mailing_URL = "./inc/ajax/suscribe.php",
@@ -74,6 +77,8 @@ modal = (function($, _doc){
 	if (btnClose){
         btnClose.addEventListener('click', _close);
     }
+
+    
 
 	return{
 		show : _open,

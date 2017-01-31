@@ -33,26 +33,17 @@ textarea{
 	padding   : 5px;
 	color     : @fontColor_grey;
 	border    : @border;
-	background: fadeout(@color_sec, 80%);
+	background: #fff;
 
 	.rounded(@BRadious);
-	.transition(@property: border; @time: .2s);
+	.transition(border);
 	&:hover,
 	&:focus{
-		color     : @color_main;
-		background: fadeout(@color_sec, 50%);
+		border-color: @color_main;
+		//background: fadeout(@color_sec, 50%);
 	}
 	&:focus{
-		border-color: @color_main;
-	}
-
-	&.error{
-		color       : fadeout(@colorState_danger, 50%);
-		border-color: fadeout(@colorState_danger, 50%);
-	}
-	&.success{
-		color       : @colorState_success;
-		border-color: @colorState_success;
+		color     : @color_main;
 	}
 	&:disabled{
 		background  : @colorState_disable;

@@ -1,4 +1,4 @@
-<div class="modal">
+<div class="modal active">
 	<div class="modal-bg">
 	<div class="modal-body">
 			<button id="btnClose"><i class="fa fa-times"></i></button>
@@ -8,34 +8,38 @@
 		</div>
 
 		<div class="modal-content">
-			<div class="modal-content-wrap">
-				<div class="title">
-					Enter the code sent via SMS to:
-					<span class="phone-prefix">+353</span><span class="phone">87225117</span>
+
+			<div class="form">
+				
+				<div class="form-input xs-12 md-6">
+					<label for="modal_name">
+						Your first name
+						<div class="error-txt"><i class="fa fa-exclamation-triangle"></i> Required</div>
+					</label>
+					<input id="modal_name" type="text" required>
 				</div>
-				<div id="code">
-					<input type="text" name="code_1" maxlength="1">
-					<input type="text" name="code_2" maxlength="1">
-					<input type="text" name="code_3" maxlength="1">
-					<input type="text" name="code_4" maxlength="1">
-					<input type="text" name="code_5" maxlength="1">
-					<input type="text" name="code_6" maxlength="1">
+
+				<div class="form-input xs-12 md-6">
+					<label for="modal_surname">
+						Your last name
+						<div class="error-txt"><i class="fa fa-exclamation-triangle"></i> Required</div>
+					</label>
+					<input id="modal_surname" type="text" required>
 				</div>
-				<div class="options">
-					<div class="option left">
-						<i class="fa fa-refresh"></i>Receive a new code
-					</div>
-					<div class="option right">
-						<i class="fa fa-phone"></i>Receive code via call instead
-					</div>
+
+				<div class="form-input xs-12">
+					<label for="modal_email">
+						Your email
+						<div class="error-txt"><i class="fa fa-exclamation-triangle"></i> A valid email is required</div>
+					</label>
+					<input id="modal_email" type="text" required>
 				</div>
 			</div>
-		</div>
 
-		<div class="modal-footer">
-			<button id="verify"   class="btn" disabled="Disabled">Verify Identity</button>
-			<a href="#" class="link" target="black">I can't access this mobile device</a>
-
+			<button class="btn btn-sec">Get started</button>
+			<span>
+				By creating an account, you agree to <a href="#" class="link">Ancestry Terms and Conditions</a> and understand that your information will be used in accordance with our <a href="#" class="link">Privacy Statement</a>, including that we will send you emails about our service and special offers.
+			</span>
 		</div>
 
 	</div>
