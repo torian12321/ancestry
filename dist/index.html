@@ -1,0 +1,174 @@
+
+
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0' >
+
+	<title>Ancestry</title>
+    <meta name="description" 				content="Discover what makes you uniquely you">
+	<meta name="application-name" 			content="Ancestry">
+	<meta name="apple-mobile-web-app-title" content="Ancestry">
+
+     <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+		<meta content="#7a9c0f" name="theme-color">
+	<meta content="#7a9c0f" name="msapplication-navbutton-color">
+	<meta content="#7a9c0f" name="apple-mobile-web-app-status-bar-style">
+
+
+		<meta name="apple-mobile-web-app-capable"          content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="#7a9c0f">
+	<meta name="apple-mobile-web-app-title"            content="Ancestry">
+	<link rel="apple-touch-icon" href="./inc/img/icons/launcher/icon-152x152.png">
+
+		<meta name="msapplication-TileImage" content="./inc/img/icons/launcher//icon-144x144.png">
+	<meta name="msapplication-TileColor" content="#7a9c0f">
+
+	<link rel="manifest"   href="./manifest.json">
+	<link rel="icon"       type="image/png" href="./inc/img/icons/favicon.ico">
+	<link rel="stylesheet" type="text/css" 	href="./inc/css/style.css">
+</head>
+
+
+<body>
+
+
+<div id="header">
+	<div class="container">
+		<div class="row">
+
+			<ul class="breadcrumbs">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Search</a></li>
+				<li><a>US Military Collection</a></li>
+			</ul>
+			<h1>U.S. Military Collection</h1>
+
+		</div>
+	</div>
+</div>
+
+
+<div id="main-area">
+
+<div class="container">
+	<div class="row">
+
+		<div class="xs-12 md-8">
+			<div class="panel panelMain">
+				<h2>World conflicts. Personal stories.</h2>
+				<span>
+					Throughout history, millions of courageous men and women have served and protected their country in times of conflict. Were your ancestors among them? It’s never been easier to find out on Ancestry.com, the world’s largest online collection of family history resources, including millions of military records spanning from before the Revolutionary War all the way up to Vietnam.
+				</span>
+				<img src="./inc/img/personal_stories.jpg" alt="">
+				<span>
+					Search through enlightening historical documents from every major U.S. war from the American Revolution through Vietnam, including draft registration cards, veterans’ gravesites, soldier pension indexes, enlistment records, muster rolls and much more.
+				</span>
+				<button class="btn btn-sec" id="btnSearch">Search all millitary records</button>
+			</div>
+		</div>
+
+	<div class="xs-12 md-4">
+		<div class="sideBar">
+
+	<div class="xs-12 sm-6 md-12">
+		<div class="panel panel_featured">
+			<h2>Featured Collections</h2>
+			<span>
+				<a class="link" href="#">U.S. World War II Army Enlistment Records</a>
+				<a class="link" href="#">U.S. Civil War Soldiers, 1861–1865</a>
+				<a class="link" href="#">WWII U.S. Navy Muster Rolls, 1938–1949</a>
+				<a class="link" href="#">U.S. World War II Draft Registration Cards, 1942</a>
+				<a class="link" href="#">World War I Draft Registration Cards</a>
+				<a class="link" href="#">U.S. Marine Corp Muster Rolls, 1798–1958</a>
+			</span>
+			<button class="btn">See all collections</button>
+		</div>
+	</div>
+
+	<div class="xs-12 sm-6 md-12">
+		<div class="panel panel_subscribe">
+			<h2>Let us help you discover your story</h2>
+			<span>
+				Begin your free family tree with a few simple facts. We’ll help you discover a lot more. Start your tree by subscribing today for a free trial.
+			</span>
+			<button class="btn">Subscribe Today</button>
+		</div>
+	</div>
+
+</div>	</div>
+
+
+
+	</div>
+</div>
+</div>
+
+<div class="modal">
+	<div class="modal-bg">
+	<div class="modal-body">
+			<button id="btnClose"><i class="fa fa-times"></i></button>
+
+		<div class="modal-header">
+			Subscribe Today
+		</div>
+
+		<div class="modal-content">
+
+			<div class="form">
+
+				<div class="form-input xs-12 md-6">
+					<label for="modal_name">
+						Your first name
+						<div class="error-txt"><i class="fa fa-exclamation-triangle"></i> Required</div>
+					</label>
+					<input id="subscribe-name" type="text" required>
+				</div>
+
+				<div class="form-input xs-12 md-6">
+					<label for="modal_surname">
+						Your last name
+						<div class="error-txt"><i class="fa fa-exclamation-triangle"></i> Required</div>
+					</label>
+					<input id="subscribe-surname" type="text" required>
+				</div>
+
+				<div class="form-input xs-12">
+					<label for="modal_email">
+						Your email
+						<div class="error-txt"><i class="fa fa-exclamation-triangle"></i> A valid email is required</div>
+					</label>
+					<input id="subscribe-email" type="text" required>
+				</div>
+			</div>
+
+			<button id="btnSubmit" class="btn btn-sec">Get started</button>
+			<span>
+				By creating an account, you agree to <a href="#" class="link">Ancestry Terms and Conditions</a> and understand that your information will be used in accordance with our <a href="#" class="link">Privacy Statement</a>, including that we will send you emails about our service and special offers.
+			</span>
+		</div>
+
+	</div>
+	</div>
+</div><div id="footer">
+	<div class="container">
+		<div class="row">
+			<ul class="xs-12">
+				<li>© 1997-2015 Ancestry</li>
+				<li><a href="#" class="link">Corporate Information</a></li>
+				<li><a href="#" class="link">Privacy</a></li>
+				<li><a href="#" class="link">Terms and Conditions</a></li>
+				<li><a href="#" class="link">Site Map</a></li>
+			</ul>
+		</div>
+	</div>
+</div>	<script src="./inc/js/libs.js"></script>
+	<script src="./inc/js/app.js"></script>
+
+	</body>
+</html>

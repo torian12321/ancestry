@@ -1,7 +1,7 @@
 Smartbox
 =============
 
-Code test for [Ancestry.](https://www.ancestry.com/)
+Code test for [Ancestry.](https://www.ancestry.com/). Visit the test [here](https://torian12321.github.io/ancestry/dist/)
 
 The structure of the files is based on [my template](https://github.com/torian12321/webTemplate)
 

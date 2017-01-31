@@ -1,5 +1,5 @@
 .npm-debug.log
-dist/
+# dist/
 node_modules/
 app/inc/css/*
 app/inc/js/app.js
